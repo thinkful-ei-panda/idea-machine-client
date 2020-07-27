@@ -1,14 +1,43 @@
 import React from 'react'
+import config from '../../config'
 
 class RegistrationPage extends React.Component {
+  state = {
+    error:null
+  }
 
   handleRegistrationSubmit = (ev) => {
     ev.preventDefault()
-
+    this.setState({error:null})
+    const {username, password} = ev.target
+    fetch(`${config.API_ENDPOINT}/users`, {
+      method: 'POST',
+      headers: {
+        'content-type' : 'application/json'
+      },
+      body: JSON.stringify({
+        user_name:username.value,
+        password:password.value
+      })
+    })
+    .then(res => (!res.ok)
+    ? res.json().then(e => Promise.reject(e))
+    : res.json())
+    .then(res => {
+      username.value = ''
+      password.value = ''
+      // this.props.onRegistrationSuccess()
+    })
+    .catch(error => {
+      this.setState({error})
+    })
   }
 
 
   render() {
+    const {error} = this.state
+    console.log(error)
+
     return (
       <div className="login-container">
         <form onSubmit={this.handleRegistrationSubmit} className="login-form">
@@ -28,7 +57,7 @@ class RegistrationPage extends React.Component {
               </div>
             </div>
           </fieldset>
-        </form>        
+        </form>
         {/* {error && <div>{error}</div>} */}
       </div>
     )

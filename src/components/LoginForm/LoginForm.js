@@ -3,17 +3,15 @@ import React from 'react'
 import config from '../../config'
 import TokenService from '../../services/token-service'
 
-class LoginPage extends React.Component {
+class LoginForm extends React.Component {
+  static defaultProps = {
+    onLoginSuccess: () => { }
+  }
+  
   state={
     error:null
   }
-
-  handleLoginSuccess = () => {
-    const { location, history } = this.props
-    const destination = (location.state || {}).from || '/'
-    history.push(destination)
-  }
-
+  
   handleLoginSubmit = (ev) => {
     ev.preventDefault()
     this.setState({error:null})
@@ -36,7 +34,7 @@ class LoginPage extends React.Component {
       TokenService.saveAuthToken(res.authToken)
       username.value = ''
       password.value = ''
-      this.handleLoginSuccess()
+      this.props.onLoginSuccess()
     })
     .catch(error => {
       this.setState({error})
@@ -71,4 +69,4 @@ class LoginPage extends React.Component {
   }  
 }
 
-export default LoginPage
+export default LoginForm
