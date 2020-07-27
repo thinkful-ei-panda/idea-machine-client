@@ -4,6 +4,9 @@ import {Route, Switch} from 'react-router-dom';
 import Header from './components/Header/Header'
 import SearchBarPage from './components/SearchBarPage/SearchBarPage'
 import LoginPage from './components/LoginPage/LoginPage'
+import MyIdeasPage from './components/MyIdeasPage/MyIdeasPage';
+import TrackedIdeasPage from './components/TrackedIdeasPage/TrackedIdeasPage';
+import RegistrationPage from './components/RegistrationPage/RegistrationPage';
 
 
 function App() {
@@ -26,13 +29,18 @@ function App() {
 
           <Route
           exact
-          path='/login'
-          component={LoginPage} />
+          path='/register'
+          component={RegistrationPage} />
 
           <Route
           exact
-          path='/login'
-          component={LoginPage} />
+          path='/my-ideas'
+          component={MyIdeasPage} />
+
+          <Route
+          exact
+          path='/tracked-ideas'
+          component={TrackedIdeasPage} />
 
 
         </Switch>

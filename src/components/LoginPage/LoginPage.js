@@ -36,7 +36,7 @@ class LoginPage extends React.Component {
       TokenService.saveAuthToken(res.authToken)
       username.value = ''
       password.value = ''
-      // this.props.onLoginSuccess()
+      this.handleLoginSuccess()
     })
     .catch(error => {
       this.setState({error})

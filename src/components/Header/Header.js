@@ -4,6 +4,9 @@ import {Link} from 'react-router-dom'
 import TokenService from '../../services/token-service'
 
 class Header extends React.Component {
+  handleLogoutClick = () => {
+    TokenService.clearAuthToken()
+  }
 
   renderLoggedInLink(){
     return (
@@ -14,12 +17,11 @@ class Header extends React.Component {
         <Link to='/tracked-ideas'>
           Tracked Ideas
         </Link>
-        <Link to='/'>
+        <Link onClick={this.handleLogoutClick} to='/'>
           Logout
         </Link>
       </div>
     )
-
   }
 
   renderLoginLink(){

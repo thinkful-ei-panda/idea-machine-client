@@ -9,7 +9,10 @@ const TokenService = {
   },
   saveAuthToken(token){
     return window.localStorage.setItem(config.TOKEN_KEY,token)
-  }
+  },
+  clearAuthToken(){
+    window.localStorage.removeItem(config.TOKEN_KEY)
+  },
 }
 
 export default TokenService
