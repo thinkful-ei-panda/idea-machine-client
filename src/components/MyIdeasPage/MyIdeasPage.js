@@ -1,9 +1,24 @@
 import React from 'react'
-import Results from '../Results/Results'
+import Results from '../IdeaResults/IdeaResults'
+import config from '../../config'
 
 class MyIdeasPage extends React.Component {
   state = {
-    results: [1]
+    results: [{id:1,title:'some title',content:'some content'}],
+    error:null,
+  }
+
+  componentDidMount(){
+    fetch(`${config.API_ENDPOINT}/ideas/my-ideas`)
+    .then(res => (!res.ok)
+    ?res.json().then(e => Promise.reject(e))
+    :res.json())
+    .then(res => {
+      this.setState({results:res})
+    })
+    .catch(error => {
+      this.setState({error:error})
+    })
   }
 
   render() {

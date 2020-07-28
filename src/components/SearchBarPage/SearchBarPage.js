@@ -1,14 +1,27 @@
 import React from 'react'
-import Results from '../Results/Results';
+import Results from '../IdeaResults/IdeaResults';
+import config from '../../config';
 
 class SearchBar extends React.Component {
 
   state = {
-    results:[]
+    results: [],
+    error:null,
   }
+
   handleSearchIdeasSubmit = (ev) => {
     ev.preventDefault()
-    // fetch(`${}`)
+    fetch(`${config.API_ENDPOINT}/ideas`)
+    .then(res => (!res.ok)
+    ? res.json().then(e => Promise.reject(e))
+    : res.json())
+    .then(res => {
+      console.log(res)
+      this.setState({results:res})
+    })
+    .catch(error => {
+      this.setState({error})
+    })
 
   }
 
