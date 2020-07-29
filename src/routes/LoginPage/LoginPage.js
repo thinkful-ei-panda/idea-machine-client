@@ -11,7 +11,12 @@ class LoginPage extends React.Component {
 
   handleLoginSuccess = () => {
     const { location, history } = this.props
+    
     const destination = (location.state || {}).from || '/'
+
+    //toggle logged in state
+    this.props.handleLogIn()
+
     history.push(destination)
   }
 

@@ -4,9 +4,6 @@ import config from '../../config'
 import TokenService from '../../services/token-service'
 
 class LoginForm extends React.Component {
-  static defaultProps = {
-    onLoginSuccess: () => { }
-  }
   
   state={
     error:null

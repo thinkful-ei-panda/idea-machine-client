@@ -2,39 +2,17 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 
 import TokenService from '../../services/token-service'
+import LoggedInNav from './LoggedInNav'
+import NotLoggedInNav from './NotLoggedInNav'
 
-class Header extends React.Component {
-  handleLogoutClick = () => {
+class Header extends React.Component {  
+  state = {
+    loggedInStatus:false
+  }
+
+  handleLogout = () => {
     TokenService.clearAuthToken()
-  }
-
-  renderLoggedInLink(){
-    return (
-      <div>
-        <Link to='/my-ideas'>
-          My Ideas
-        </Link>
-        <Link to='/tracked-ideas'>
-          Tracked Ideas
-        </Link>
-        <Link onClick={this.handleLogoutClick} to='/'>
-          Logout
-        </Link>
-      </div>
-    )
-  }
-
-  renderLoginLink(){
-    return (
-      <div>
-        <Link to='/login'>
-          Login
-        </Link>
-        <Link to='/register'>
-          Register
-        </Link>
-      </div>
-    )
+    this.setState({loggedInStatus:false})
   }
 
   render() {
@@ -46,8 +24,8 @@ class Header extends React.Component {
           </Link>
         </h1>
         {TokenService.hasAuthToken()
-          ?this.renderLoggedInLink()
-          :this.renderLoginLink()}
+          ?<LoggedInNav handleLogout={this.props.handleLogout}/>
+          :<NotLoggedInNav />}
       </nav>
     )
   }  

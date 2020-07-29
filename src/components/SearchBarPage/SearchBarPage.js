@@ -1,6 +1,7 @@
 import React from 'react'
 import Results from '../IdeaResults/IdeaResults';
 import config from '../../config';
+import TokenService from '../../services/token-service';
 
 class SearchBar extends React.Component {
 
@@ -16,13 +17,22 @@ class SearchBar extends React.Component {
     ? res.json().then(e => Promise.reject(e))
     : res.json())
     .then(res => {
-      console.log(res)
-      this.setState({results:res})
+      const user_name='dunder'
+      let results
+      if(TokenService.hasAuthToken){
+        results = res.filter(idea => idea.user_name !== user_name)
+      } else {
+        results = res
+      }
+      this.setState({results})
     })
     .catch(error => {
       this.setState({error})
     })
+  }
 
+  handleFollowClick = (e) => {
+    console.log('follow')
   }
 
 
@@ -45,7 +55,10 @@ class SearchBar extends React.Component {
             </div>
           </fieldset>
         </form>
-        {results.length !== 0 && <Results results={results} />}
+        {results.length !== 0 && <Results 
+        handleFollowClick = {this.handleFollowClick}
+        results={results} 
+        />}
       </div>
     )
   }  

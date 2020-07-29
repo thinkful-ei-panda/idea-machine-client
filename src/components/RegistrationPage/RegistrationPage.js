@@ -26,17 +26,16 @@ class RegistrationPage extends React.Component {
     .then(res => {
       username.value = ''
       password.value = ''
-      // this.props.onRegistrationSuccess()
+      this.props.history.push('/')
     })
     .catch(error => {
-      this.setState({error})
+      this.setState({error:error.error})
     })
   }
 
 
   render() {
     const {error} = this.state
-    console.log(error)
 
     return (
       <div className="login-container">
@@ -58,7 +57,7 @@ class RegistrationPage extends React.Component {
             </div>
           </fieldset>
         </form>
-        {/* {error && <div>{error}</div>} */}
+        {error && <div>{error}</div>}
       </div>
     )
   }  
