@@ -1,6 +1,7 @@
 import React from 'react'
 import Results from '../IdeaResults/IdeaResults'
 import config from '../../config'
+import TokenService from '../../services/token-service'
 
 class TrackedIdeasPage extends React.Component{
   state = {
@@ -9,8 +10,13 @@ class TrackedIdeasPage extends React.Component{
   }
 
   componentDidMount(){
-    const user_id = 1
-    fetch(`${config.API_ENDPOINT}/ideas/followed/${user_id}`)
+    fetch(`${config.API_ENDPOINT}/followedIdeas`,{
+      method: 'GET',
+      headers: {
+        'content-type':'application/json',
+        'Authorization':`bearer ${TokenService.getAuthToken()}`
+      }
+    })
     .then(res => (!res.ok)
     ?res.json().then(e => Promise.reject(e))
     :res.json())
@@ -23,7 +29,27 @@ class TrackedIdeasPage extends React.Component{
   }
 
   handleUnfollowClick = (e) => {
-    console.log('unfollow')
+    console.log('unfollow',e.target.closest('li').id)
+
+    const idea_id = e.target.closest('li').id
+
+    fetch(`${config.API_ENDPOINT}/followedIdeas/${idea_id}`,{
+      method: 'DELETE',
+      headers: {
+        'content-type':'application/json',
+        'Authorization':`bearer ${TokenService.getAuthToken()}`
+      },
+      body:JSON.stringify({
+        follower_id:TokenService.getPayloadFromToken.user_id
+      })
+    })
+    .then(() => {
+      const newResults = this.state.results.filter(result => result.id !== Number(idea_id))
+      this.setState({results:newResults})
+    })
+    .catch(error => {
+      this.setState({error})
+    })
   }
 
   render(){
@@ -35,7 +61,7 @@ class TrackedIdeasPage extends React.Component{
         results={results} />}
       </div>
     )
-  }  
+  }
 }
 
 export default TrackedIdeasPage

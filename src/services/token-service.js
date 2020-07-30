@@ -13,6 +13,14 @@ const TokenService = {
   clearAuthToken(){
     window.localStorage.removeItem(config.TOKEN_KEY)
   },
+  getPayloadFromToken(){
+    return window.atob(TokenService.getAuthToken().split('.')[1])
+  },
+  getUserName(){
+    const payload = this.getPayloadFromToken()
+    console.log(payload)
+    return payload.user_name 
+  }
 }
 
 export default TokenService
