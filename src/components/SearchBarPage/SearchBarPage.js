@@ -33,7 +33,7 @@ class SearchBar extends React.Component {
         ?res.json().then(e => Promise.reject(e))
         :res.json())
         .then(trackedResults => {
-          console.log('here 1')          
+          
 
           let followed = results.filter(result => {
             let check;
@@ -61,7 +61,7 @@ class SearchBar extends React.Component {
           results = [...followedWithFollowed,...notFollowed]
 
           //Remove results that are made by the logged in user
-          console.log('here 2', results)
+          
 
           // const payload = window.atob(TokenService.getAuthToken().split('.')[1])
           // const user_name = payload.user_name
@@ -73,7 +73,7 @@ class SearchBar extends React.Component {
           this.setState({results})
         })
         .catch(error => {
-          console.log(error)
+          
           this.setState({error})
         })
 
@@ -83,13 +83,15 @@ class SearchBar extends React.Component {
       }      
     })
     .catch(error => {
-      console.log(error)
+      
       this.setState({error})
     })
   }
 
   handleFollowClick = (e) => {    
+    
     const idea_id = e.target.closest('li').id
+    console.log('follow click',idea_id)
 
     fetch(`${config.API_ENDPOINT}/followedIdeas`,{
       method: 'POST',
@@ -119,14 +121,19 @@ class SearchBar extends React.Component {
     const {results} = this.state
 
     return (
-      <div className="search-container-center">
+      <div className="Landing-Page">
+        <section>
+          <p>The Idea Machine is an app for saving development ideas AND for getting inspiration from other users posts.</p>
+          <p>After making an account, you can save, edit or delete ideas, and make them publicly viewable.</p>
+          <p>You can search for other user's public ideas and follow them to come back to later.</p>
+        </section>
         <form onSubmit={this.handleSearchIdeasSubmit} className="search-form-center">
           <legend></legend>
           <fieldset>
             <div className="row">
               <div>
                 <label hidden="" htmlFor="searchBar">Search</label>
-                <input name="searchBar" id="searchBar" />
+                <input name="searchBar" id="searchBar" placeholder="currently gets all public ideas"/>
               </div>
               <div>
                 <button>Search</button>
@@ -134,7 +141,7 @@ class SearchBar extends React.Component {
             </div>
           </fieldset>
         </form>
-        {this.state.error && <div>{this.state.error}</div>}
+        {this.state.error && <div>{this.state.error.error}</div>}
         {results.length !== 0 && <Results 
         handleFollowClick = {this.handleFollowClick}
         results={results} 

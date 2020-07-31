@@ -11,11 +11,11 @@ class MyIdeasPage extends React.Component {
   }
 
   componentDidMount(){
-    fetch(`${config.API_ENDPOINT}/ideas/user/my-ideas`, {
+    fetch(`${config.API_ENDPOINT}/my-ideas`, {
       method: 'GET',
       headers:{
         'content-type':'application/json',
-        'Authorization':`bearer ${TokenService.getAuthToken()}`
+        'Authorization':`bearer ${TokenService.getAuthToken()}`,
       }
     })
     .then(res => (!res.ok)
@@ -30,6 +30,7 @@ class MyIdeasPage extends React.Component {
   }
 
   handleMakePublicClick = (e) => {
+    this.setState({error:null})
     const idea_id = e.target.closest('li').id
     fetch(`${config.API_ENDPOINT}/ideas/${idea_id}`,{
       method:'PATCH',
@@ -52,12 +53,12 @@ class MyIdeasPage extends React.Component {
       this.setState({results: updatedResults})
     })
     .catch(error => {
-      console.log(error)
       this.setState({error})
     })
   }
   
   handleMakePrivateClick = (e) => {
+    this.setState({error:null})
     const idea_id = e.target.closest('li').id
     fetch(`${config.API_ENDPOINT}/ideas/${idea_id}`,{
       method:'PATCH',
@@ -69,6 +70,9 @@ class MyIdeasPage extends React.Component {
         public_status:false
       })
     })
+    .then(res => !(res.ok)
+    ?res.json().then(e => Promise.reject(e))
+    :res)
     .then(() => {
       const index = this.state.results.findIndex(result => result.id === Number(idea_id))
       let updatedIdea = this.state.results.find(result => result.id === Number(idea_id))
@@ -80,13 +84,12 @@ class MyIdeasPage extends React.Component {
       this.setState({results: updatedResults})
     })
     .catch(error => {
-      console.log(error)
       this.setState({error})
     })
   }
 
   handleDeleteClick = (e) => {
-    console.log('delete', e.target.closest('li').id)
+    this.setState({error:null})
     const id = e.target.closest('li').id
 
 
@@ -97,6 +100,9 @@ class MyIdeasPage extends React.Component {
         'Authorization':`bearer ${TokenService.getAuthToken()}`,
       }
     })
+    .then(res => !(res.ok)
+    ?res.json().then(e => Promise.reject(e))
+    :res)
     .then(() => {
       const newResults = this.state.results.filter(result => result.id !== Number(id))
 
@@ -105,11 +111,7 @@ class MyIdeasPage extends React.Component {
     .catch(error => {
       this.setState({error})
     })
-  }
-  
-  handleEditClick = () => {
-    console.log('edit')
-  }
+  }  
 
   render() {
     const {results} = this.state
@@ -119,11 +121,13 @@ class MyIdeasPage extends React.Component {
         <Link to='/add-idea'>
           <button>Add Idea</button>
         </Link>
+
+        {this.state.error && <div>{this.state.error.error}</div>}
         
-        {results.length !== 0 && <Results 
+        {results.length !== 0 && <Results {...this.props}
         handleMakePublicClick = {this.handleMakePublicClick} 
         handleMakePrivateClick = {this.handleMakePrivateClick}
-        handleEditClick = {this.handleEditClick}
+        handleEditClick = {this.props.handleEditClick}
         handleDeleteClick = {this.handleDeleteClick}
         results={results} />}
       </div>

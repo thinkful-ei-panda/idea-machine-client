@@ -7,7 +7,7 @@ class AddIdeaPage extends React.Component {
     return (
       <div className='AddIdeaPage'>
         <h2>Add Idea</h2>
-        <AddIdeaForm />
+        <AddIdeaForm {...this.props}/>
       </div>
     )
   }

@@ -16,7 +16,7 @@ const Result = (props) => {
       </header>
       {(location.pathname === '/my-ideas' && public_status === false) && <button onClick = {e => props.handleMakePublicClick(e)} >Make public</button>}
       {(location.pathname === '/my-ideas' && public_status === true) && <button onClick = {e => props.handleMakePrivateClick(e)} >Make private</button>}
-      {location.pathname === '/my-ideas' && <button onClick = {e => props.handleEditClick(e)}>Edit</button>}
+      {location.pathname === '/my-ideas' && <button onClick = {e => props.handleEditClick(e,props.history,title,content)}>Edit</button>}
       {location.pathname === '/my-ideas' && <button onClick = {e => props.handleDeleteClick(e)}>Delete</button>}
       {(location.pathname === '/' && TokenService.hasAuthToken() && !followed) && <button onClick = {e => props.handleFollowClick(e)}>Follow</button>}
       {(location.pathname === '/' && TokenService.hasAuthToken() && followed) && <div>Followed</div>}

@@ -8,14 +8,20 @@ import MyIdeasPage from './components/MyIdeasPage/MyIdeasPage';
 import TrackedIdeasPage from './components/TrackedIdeasPage/TrackedIdeasPage';
 import RegistrationPage from './components/RegistrationPage/RegistrationPage';
 import AddIdeaPage from './routes/AddIdeaPage/AddIdeaPage';
+
 import PublicOnlyRoute from './components/Utils/PublicOnlyRoute';
 import PrivateRoute from './components/Utils/PrivateRoute';
 import TokenService from './services/token-service';
+import EditIdeaForm from './components/EditIdeaForm/EditIdeaForm';
 
 
 class App extends React.Component {
   state = {
-    loggedInToggle:false
+    loggedInToggle:false,
+    editIdeaValues: {
+      title:null,
+      content:null
+    }
   }
 
   handleLogIn = () => {
@@ -23,9 +29,16 @@ class App extends React.Component {
   }
 
   handleLogout = () => {
-    // console.log('here')
     TokenService.clearAuthToken()
     this.setState({loggedInToggle:false})
+  }
+
+  handleEditClick = (e,history,title,content) => {
+    this.setState({editIdeaValues: {
+      title,
+      content,
+      id: e.target.closest('li').id,
+    }},() => history.push('/edit-idea-page'))
   }
 
   render(){
@@ -44,23 +57,39 @@ class App extends React.Component {
             <Route
             exact
             path='/login'
-            render={props => <LoginPage props={props} handleLogIn={this.handleLogIn}/>}
+            render={props => <LoginPage {...props} handleLogIn={this.handleLogIn}/>}
             />            
   
             <PublicOnlyRoute
             exact
             path='/register'
             component={RegistrationPage} />
+
+            <Route
   
-            <PrivateRoute
+            // <PrivateRoute
             exact
-            path='/my-ideas'
-            component={MyIdeasPage} />
+            path='/my-ideas'            
+            // component={MyIdeasPage} />
+            render = {props => <MyIdeasPage {...props} handleEditClick={this.handleEditClick}/> }
+            />
   
-            <PrivateRoute
+            
+            <Route
+            // <PrivateRoute
             exact
             path='/add-idea'
-            component={AddIdeaPage} />
+            render={props => <AddIdeaPage {...props} />}
+            // component={AddIdeaPage}
+             />
+
+             <Route
+            // <PrivateRoute
+            exact
+            path='/edit-idea-page'
+            render={props => <EditIdeaForm {...props} editIdeaValues={this.state.editIdeaValues}/>}
+            // component={AddIdeaPage}
+             />
   
             <PrivateRoute
             exact

@@ -2,13 +2,26 @@ import React from 'react'
 import config from '../../config'
 import TokenService from '../../services/token-service'
 
-class AddIdeaForm extends React.Component {
-  handleAddIdeaFormSubmit = (ev) => {
+class EditIdeaForm extends React.Component {
+  static defaultProps = {
+    location: {},
+    history: {
+      push: () => {},
+    },
+    editIdeaValues:{}
+  }
+
+  state = {
+    error:null
+  }
+
+  handleEditIdeaFormSubmit = (ev,id) => {
     ev.preventDefault()
+    this.setState({error:null})
     const {title,content} = ev.target
 
-    fetch(`${config.API_ENDPOINT}/ideas`, {
-      method: 'POST',
+    fetch(`${config.API_ENDPOINT}/ideas/${id}`, {
+      method: 'PATCH',
       headers: {
         'content-type':'application/json',
         'Authorization':`bearer ${TokenService.getAuthToken()}`,
@@ -20,35 +33,38 @@ class AddIdeaForm extends React.Component {
     })
     .then(res => (!res.ok)
     ?res.json().then(e => Promise.reject(e))
-    :res.json())
+    :res)
     .then(() => {
       this.props.history.push('/my-ideas')
     })
     .catch(error => {
-      this.setState({error})
+      this.setState({error:error.error})
     })    
   }
 
   render(){
+    const {title, content,id} = this.props.editIdeaValues
+
     return (
       <div>
-        <form onSubmit={this.handleAddIdeaFormSubmit}>
+        <form onSubmit={ev =>this.handleEditIdeaFormSubmit(ev,id)}>
           <legend></legend>
           <fieldset>
             <div>
               <label htmlFor='title'>Title</label>
-              <input id='title' name='title' />
+              <input id='title' name='title' placeholder={title}/>
             </div>            
             <div>
               <label htmlFor='content'>Content</label>
-              <input id='content' name='content' />
+              <input id='content' name='content' placeholder={content}/>
             </div>           
-            <button>Add Idea</button>
+            <button>Finish Edit</button>
           </fieldset>
         </form>
+        {this.state.error && <div>{this.state.error}</div>}
       </div>
     )
   }
 }
 
-export default AddIdeaForm
+export default EditIdeaForm

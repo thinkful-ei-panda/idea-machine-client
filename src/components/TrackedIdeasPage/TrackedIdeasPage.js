@@ -37,7 +37,7 @@ class TrackedIdeasPage extends React.Component{
       method: 'DELETE',
       headers: {
         'content-type':'application/json',
-        'Authorization':`bearer ${TokenService.getAuthToken()}`
+        'Authorization':`bearer ${TokenService.getAuthToken()}`,
       },
       body:JSON.stringify({
         follower_id:TokenService.getPayloadFromToken.user_id
@@ -55,7 +55,9 @@ class TrackedIdeasPage extends React.Component{
   render(){
     const {results} = this.state
     return (
-      <div>Tracked Ideas Page
+      <div>
+        <h2>Tracked Ideas</h2>
+        {this.state.error && <div>{this.state.error.error}</div>}
         {results.length !== 0 && <Results 
         handleUnfollowClick = {this.handleUnfollowClick}
         results={results} />}
