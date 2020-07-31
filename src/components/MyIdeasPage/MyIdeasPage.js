@@ -6,7 +6,7 @@ import TokenService from '../../services/token-service'
 
 class MyIdeasPage extends React.Component {
   state = {
-    results: [{id:1,title:'some title',content:'some content'}],
+    results: [],
     error:null,
   }
 
