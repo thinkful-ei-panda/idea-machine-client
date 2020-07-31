@@ -3,8 +3,14 @@ import config from '../../config'
 import TokenService from '../../services/token-service'
 
 class AddIdeaForm extends React.Component {
+  state={
+    error:null
+  }
+
   handleAddIdeaFormSubmit = (ev) => {
     ev.preventDefault()
+    this.setState({error:null})
+
     const {title,content} = ev.target
 
     fetch(`${config.API_ENDPOINT}/ideas`, {
@@ -32,6 +38,7 @@ class AddIdeaForm extends React.Component {
   render(){
     return (
       <div>
+        {this.state.error && <div>{this.state.error.error}</div>}
         <form onSubmit={this.handleAddIdeaFormSubmit}>
           <legend></legend>
           <fieldset>
