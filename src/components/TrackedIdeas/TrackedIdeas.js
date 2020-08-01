@@ -3,7 +3,7 @@ import Results from '../IdeaResults/IdeaResults'
 import config from '../../config'
 import TokenService from '../../services/token-service'
 
-class TrackedIdeasPage extends React.Component{
+class TrackedIdeas extends React.Component{
   state = {
     results: [],
     error:null,
@@ -66,4 +66,4 @@ class TrackedIdeasPage extends React.Component{
   }
 }
 
-export default TrackedIdeasPage
+export default TrackedIdeas

@@ -52,7 +52,7 @@ class LoginForm extends React.Component {
               </div>
               <div>
                 <label htmlFor="password">Password:</label>
-                <input name="password" id="password" />
+                <input type="password" name="password" id="password" />
               </div>
               <div>
                 <button>Sign In</button>

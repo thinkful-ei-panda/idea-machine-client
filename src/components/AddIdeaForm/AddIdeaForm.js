@@ -48,7 +48,7 @@ class AddIdeaForm extends React.Component {
             </div>            
             <div>
               <label htmlFor='content'>Content</label>
-              <input id='content' name='content' />
+              <textarea id='content' name='content' />
             </div>           
             <button>Add Idea</button>
           </fieldset>

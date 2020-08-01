@@ -3,16 +3,17 @@ import {Route, Switch} from 'react-router-dom';
 
 import Header from './components/Header/Header'
 import SearchBarPage from './components/SearchBarPage/SearchBarPage'
-import LoginPage from './routes/LoginPage/LoginPage'
-import MyIdeasPage from './components/MyIdeasPage/MyIdeasPage';
-import TrackedIdeasPage from './components/TrackedIdeasPage/TrackedIdeasPage';
-import RegistrationPage from './components/RegistrationPage/RegistrationPage';
-import AddIdeaPage from './routes/AddIdeaPage/AddIdeaPage';
+import LoginPage from './routes/LoginPage'
+import AddIdeaPage from './routes/AddIdeaPage';
 
 import PublicOnlyRoute from './components/Utils/PublicOnlyRoute';
 import PrivateRoute from './components/Utils/PrivateRoute';
 import TokenService from './services/token-service';
-import EditIdeaForm from './components/EditIdeaForm/EditIdeaForm';
+import MyIdeasPage from './routes/MyIdeasPage';
+import TrackedIdeasPage from './routes/TrackedIdeasPage';
+import RegistrationPage from './routes/RegistrationPage';
+import EditIdeaPage from './routes/EditIdeaForm';
+
 
 
 class App extends React.Component {
@@ -24,8 +25,10 @@ class App extends React.Component {
     }
   }
 
-  handleLogIn = () => {
+  handleLogIn = (history) => {
     this.setState({loggedInToggle:true})
+
+    history.push('/')
   }
 
   handleLogout = () => {
@@ -54,41 +57,35 @@ class App extends React.Component {
             path='/'
             component={SearchBarPage} />
   
-            <Route
+            <PublicOnlyRoute
             exact
             path='/login'
-            render={props => <LoginPage {...props} handleLogIn={this.handleLogIn}/>}
-            />            
-  
+            component={props => <LoginPage {...props} handleLogIn={this.handleLogIn}/>}
+            />
+
             <PublicOnlyRoute
             exact
             path='/register'
-            component={RegistrationPage} />
+            handleLogIn={this.handleLogIn}
+            component={props => <RegistrationPage {...props} handleLogIn={this.handleLogIn}/>}             
+            />
 
-            <Route
-  
-            // <PrivateRoute
+            <Route            
             exact
             path='/my-ideas'            
-            // component={MyIdeasPage} />
-            render = {props => <MyIdeasPage {...props} handleEditClick={this.handleEditClick}/> }
+            component = {props => <MyIdeasPage {...props} handleEditClick={this.handleEditClick}/> }
             />
-  
             
-            <Route
-            // <PrivateRoute
+            <PrivateRoute
             exact
             path='/add-idea'
-            render={props => <AddIdeaPage {...props} />}
-            // component={AddIdeaPage}
+            component={props => <AddIdeaPage {...props} />}          
              />
-
-             <Route
-            // <PrivateRoute
+             
+            <PrivateRoute
             exact
             path='/edit-idea-page'
-            render={props => <EditIdeaForm {...props} editIdeaValues={this.state.editIdeaValues}/>}
-            // component={AddIdeaPage}
+            component={props => <EditIdeaPage {...props} editIdeaValues={this.state.editIdeaValues}/>}            
              />
   
             <PrivateRoute

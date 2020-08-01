@@ -1,5 +1,5 @@
 import React from 'react'
-import AddIdeaForm from '../../components/AddIdeaForm/AddIdeaForm'
+import AddIdeaForm from '../components/AddIdeaForm/AddIdeaForm'
 
 class AddIdeaPage extends React.Component {
 

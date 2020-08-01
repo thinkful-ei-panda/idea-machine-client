@@ -52,11 +52,11 @@ class EditIdeaForm extends React.Component {
           <fieldset>
             <div>
               <label htmlFor='title'>Title</label>
-              <input id='title' name='title' placeholder={title}/>
+              <input id='title' name='title' defaultValue={title}/>
             </div>            
             <div>
               <label htmlFor='content'>Content</label>
-              <input id='content' name='content' placeholder={content}/>
+              <textarea id='content' name='content' defaultValue={content}/>
             </div>           
             <button>Finish Edit</button>
           </fieldset>

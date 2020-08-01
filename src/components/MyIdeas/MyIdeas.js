@@ -4,7 +4,7 @@ import Results from '../IdeaResults/IdeaResults'
 import config from '../../config'
 import TokenService from '../../services/token-service'
 
-class MyIdeasPage extends React.Component {
+class MyIdeas extends React.Component {
   state = {
     results: [],
     error:null,
@@ -117,7 +117,6 @@ class MyIdeasPage extends React.Component {
     const {results} = this.state
     return (
       <div>
-        <h2>My Ideas</h2>
         <Link to='/add-idea'>
           <button>Add Idea</button>
         </Link>
@@ -135,4 +134,4 @@ class MyIdeasPage extends React.Component {
   }  
 }
 
-export default MyIdeasPage
+export default MyIdeas

@@ -1,7 +1,8 @@
 import React from 'react'
 import config from '../../config'
+import TokenService from '../../services/token-service'
 
-class RegistrationPage extends React.Component {
+class RegistrationForm extends React.Component {
   state = {
     error:null
   }
@@ -23,13 +24,36 @@ class RegistrationPage extends React.Component {
     .then(res => (!res.ok)
     ? res.json().then(e => Promise.reject(e))
     : res.json())
-    .then(res => {
-      username.value = ''
-      password.value = ''
-      this.props.history.push('/')
+    .then(() => {
+
+      //After registering, logs in
+      fetch(`${config.API_ENDPOINT}/auth/login`, {
+        method: 'POST',
+        headers: {
+          'content-type' : 'application/json'
+        },
+        body: JSON.stringify({
+          user_name:username.value,
+          password:password.value
+        })
+      })
+      .then(res => (!res.ok)
+      ? res.json().then(e => Promise.reject(e))
+      : res.json())
+      .then(res => {
+        TokenService.saveAuthToken(res.authToken)
+        username.value = ''
+        password.value = ''
+
+        //toggle logged in state
+        this.props.handleLogIn(this.props.history)
+      })
+      .catch(error => {
+        this.setState({error})
+      })      
     })
     .catch(error => {
-      this.setState({error:error.error})
+      this.setState({error})
     })
   }
 
@@ -57,10 +81,10 @@ class RegistrationPage extends React.Component {
             </div>
           </fieldset>
         </form>
-        {error && <div>{error}</div>}
+        {error && <div>{error.error}</div>}
       </div>
     )
   }  
 }
 
-export default RegistrationPage
+export default RegistrationForm

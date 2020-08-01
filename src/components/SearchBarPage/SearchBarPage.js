@@ -18,7 +18,7 @@ class SearchBar extends React.Component {
     : res.json())
     .then(res => {
       let results = res
-      if(TokenService.hasAuthToken){        
+      if(TokenService.hasAuthToken()){        
 
         //Add followed key with a value of true if the idea is followed by the logged in user
 
@@ -60,17 +60,23 @@ class SearchBar extends React.Component {
 
           results = [...followedWithFollowed,...notFollowed]
 
-          //Remove results that are made by the logged in user
-          
+          //Remove results that are made by the logged in user          
+          console.log('message', TokenService.getAuthToken())
 
-          // const payload = window.atob(TokenService.getAuthToken().split('.')[1])
-          // const user_name = payload.user_name
-
-          // console.log(user_name)
-          
-          // results = results.filter(idea => idea.user_name !== user_name)
-
-          this.setState({results})
+          new Promise((resolve, reject) => {            
+            const payload = window.atob(TokenService.getAuthToken().split('.')[1])
+            resolve (payload)                       
+          })
+          .then(payload => {
+            const user_name = JSON.parse(payload).sub
+                      
+            results = results.filter(idea => idea.user_name !== user_name)
+            this.setState({results})
+          })
+          .catch(error => {
+            console.log('error')
+            this.setState({error})
+          })
         })
         .catch(error => {
           
