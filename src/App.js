@@ -70,7 +70,7 @@ class App extends React.Component {
             component={props => <RegistrationPage {...props} handleLogIn={this.handleLogIn}/>}             
             />
 
-            <Route            
+            <PrivateRoute
             exact
             path='/my-ideas'            
             component = {props => <MyIdeasPage {...props} handleEditClick={this.handleEditClick}/> }
