@@ -1,6 +1,7 @@
 import React from 'react'
 import config from '../../config'
 import TokenService from '../../services/token-service'
+import './RegistrationForm.css'
 
 class RegistrationForm extends React.Component {
   state = {
@@ -67,15 +68,15 @@ class RegistrationForm extends React.Component {
           <legend></legend>
           <fieldset>
             <div className="column">
-              <div>
-                <label htmlFor="username">Username:</label>
+              <div className='formInputContainer'>
+                <label htmlFor="username">Username</label>
                 <input name="username" id="username" />
               </div>
-              <div>
-                <label htmlFor="password">Password:</label>
+              <div className='formInputContainer'>
+                <label htmlFor="password">Password</label>
                 <input name="password" id="password" />
               </div>
-              <div>
+              <div className='buttonContainer'>
                 <button>Register</button>
               </div>
             </div>

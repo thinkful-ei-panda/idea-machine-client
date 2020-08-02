@@ -49,18 +49,20 @@ class EditIdeaForm extends React.Component {
     return (
       <div>
         <form onSubmit={ev =>this.handleEditIdeaFormSubmit(ev,id)}>
-          <legend></legend>
+          <legend>Edit Idea Form</legend>
           <fieldset>
-            <div className='formInputContainer'>
-              <label htmlFor='title'>Title</label>
-              <input id='title' name='title' defaultValue={title}/>
-            </div>            
-            <div className='formInputContainer'>
-              <label htmlFor='content'>Content</label>
-              <textarea id='content' name='content' defaultValue={content}/>
-            </div>      
-            <div className='buttonContainer'>
-              <button>Finish Edit</button>
+            <div className='column'>
+              <div className='formInputContainer'>
+                <label htmlFor='title'>Title</label>
+                <input id='title' name='title' defaultValue={title}/>
+              </div>            
+              <div className='formInputContainer'>
+                <label htmlFor='content'>Content</label>
+                <textarea id='content' name='content' defaultValue={content}/>
+              </div>      
+              <div className='buttonContainer'>
+                <button>Finish Edit</button>
+              </div>
             </div>
           </fieldset>
         </form>

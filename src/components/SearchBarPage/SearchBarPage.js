@@ -126,11 +126,11 @@ class SearchBar extends React.Component {
 
     return (
       <div className="Landing-Page">
-        <section>
-          {this.state.results.length === 0 && <p>Save ideas and get inspired</p>}
-          {/* <p>After making an account, you can save, edit or delete ideas, and make them publicly viewable.</p>
-          <p>You can search for other user's public ideas and follow them to come back to later.</p> */}
-        </section>
+        
+        {this.state.results.length === 0 && <section className='instructions'>Save ideas and get inspired</section>}
+        {/* <p>After making an account, you can save, edit or delete ideas, and make them publicly viewable.</p>
+        <p>You can search for other user's public ideas and follow them to come back to later.</p> */}
+        
 
         {/* <form onSubmit={this.handleSearchIdeasSubmit} className="search-form-center">
           <legend></legend>

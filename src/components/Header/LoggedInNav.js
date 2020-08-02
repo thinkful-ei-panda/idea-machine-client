@@ -11,7 +11,7 @@ class LoggedInNav extends React.Component {
 
   render() {
     return (
-      <nav className='Nav'>        
+      <nav className='Nav'>
         <NavLink to='/my-ideas'>
           <div>My Ideas</div>
         </NavLink>

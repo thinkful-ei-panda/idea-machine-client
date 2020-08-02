@@ -41,18 +41,20 @@ class AddIdeaForm extends React.Component {
       <div>
         {this.state.error && <div>{this.state.error.error}</div>}
         <form onSubmit={this.handleAddIdeaFormSubmit}>
-          <legend></legend>
+          <legend hidden>Add Idea Form</legend>
           <fieldset>
-            <div className='formInputContainer'>
-              <label htmlFor='title'>Title</label>
-              <input id='title' name='title' />
-            </div>
-            <div className='formInputContainer'>
-              <label htmlFor='content'>Content</label>
-              <textarea id='content' name='content' />
-            </div>
-            <div className='buttonContainer'>
-              <button>Add Idea</button>
+            <div className='column'>
+              <div className='formInputContainer'>
+                <label htmlFor='title'>Title</label>
+                <input id='title' name='title' />
+              </div>
+              <div className='formInputContainer'>
+                <label htmlFor='content'>Content</label>
+                <textarea id='content' name='content' />
+              </div>
+              <div className='buttonContainer'>
+                <button>Add Idea</button>
+              </div>
             </div>
           </fieldset>
         </form>

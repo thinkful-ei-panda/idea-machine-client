@@ -24,9 +24,11 @@ class Header extends React.Component {
             ID8
           </Link>
         </h1>
-        {TokenService.hasAuthToken()
-          ?<LoggedInNav handleLogout={this.props.handleLogout}/>
-          :<NotLoggedInNav />}
+        <div className='NavContainer'>
+          {TokenService.hasAuthToken()
+            ?<LoggedInNav handleLogout={this.props.handleLogout}/>
+            :<NotLoggedInNav />}
+        </div>
       </header>
     )
   }  

@@ -6,7 +6,7 @@ class MyIdeasPage extends React.Component {
   render() {
     return (
       <div className='MyIdeasPage'>
-        <h2>My Ideas</h2>
+        <h2 hidden>My Ideas</h2>
         <MyIdeas {...this.props}/>
       </div>
     )

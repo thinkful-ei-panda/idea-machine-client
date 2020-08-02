@@ -1,7 +1,8 @@
 .Nav{
   display:flex;
   flex-direction: row;
-  background-color: #b0bec5;
+  width:300px;
+  margin:auto;
 }
 
 a{
@@ -11,7 +12,7 @@ a{
 }
 
 a div{
-  width:60%;
+  max-width: 100px;
   margin:auto;
   padding-top: 10px;
   padding-bottom: 10px;

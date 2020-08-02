@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom'
 import Results from '../IdeaResults/IdeaResults'
 import config from '../../config'
 import TokenService from '../../services/token-service'
+import './MyIdeas.css'
 
 class MyIdeas extends React.Component {
   state = {
@@ -117,9 +118,11 @@ class MyIdeas extends React.Component {
     const {results} = this.state
     return (
       <>
-        <Link to='/add-idea'>
-          <button>Add Idea</button>
-        </Link>
+        <div className='buttonContainer-add-idea'>
+          <Link to='/add-idea'>
+            <button>Add Idea</button>
+          </Link>
+        </div>
 
         {this.state.error && <div>{this.state.error.error}</div>}
         

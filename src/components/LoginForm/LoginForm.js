@@ -2,6 +2,7 @@ import React from 'react'
 
 import config from '../../config'
 import TokenService from '../../services/token-service'
+import './LoginForm.css'
 
 class LoginForm extends React.Component {
   
@@ -45,17 +46,17 @@ class LoginForm extends React.Component {
         <form onSubmit={this.handleLoginSubmit} className="login-form">
           <legend></legend>
           <fieldset>
-            <div className="column">
-              <div>
-                <label htmlFor="username">Username:</label>
+            <div className='column'>
+              <div className="formInputContainer">
+                <label htmlFor="username">Username</label>
                 <input name="username" id="username" />
               </div>
-              <div>
-                <label htmlFor="password">Password:</label>
+              <div className="formInputContainer">
+                <label htmlFor="password">Password</label>
                 <input type="password" name="password" id="password" />
               </div>
-              <div>
-                <button>Sign In</button>
+              <div className='buttonContainer'>
+                <button >Sign In</button>
               </div>
             </div>
           </fieldset>
