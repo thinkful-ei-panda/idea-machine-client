@@ -55,13 +55,13 @@ class TrackedIdeas extends React.Component{
   render(){
     const {results} = this.state
     return (
-      <div>
-        <h2>Tracked Ideas</h2>
+      <>
+        <h2>Followed Ideas</h2>
         {this.state.error && <div>{this.state.error.error}</div>}
         {results.length !== 0 && <Results 
         handleUnfollowClick = {this.handleUnfollowClick}
         results={results} />}
-      </div>
+      </>
     )
   }
 }

@@ -1,6 +1,7 @@
 import React from 'react'
 import config from '../../config'
 import TokenService from '../../services/token-service'
+import './AddIdeaForm.css'
 
 class AddIdeaForm extends React.Component {
   state={
@@ -42,15 +43,17 @@ class AddIdeaForm extends React.Component {
         <form onSubmit={this.handleAddIdeaFormSubmit}>
           <legend></legend>
           <fieldset>
-            <div>
+            <div className='formInputContainer'>
               <label htmlFor='title'>Title</label>
               <input id='title' name='title' />
-            </div>            
-            <div>
+            </div>
+            <div className='formInputContainer'>
               <label htmlFor='content'>Content</label>
               <textarea id='content' name='content' />
-            </div>           
-            <button>Add Idea</button>
+            </div>
+            <div className='buttonContainer'>
+              <button>Add Idea</button>
+            </div>
           </fieldset>
         </form>
       </div>

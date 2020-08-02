@@ -116,7 +116,7 @@ class MyIdeas extends React.Component {
   render() {
     const {results} = this.state
     return (
-      <div>
+      <>
         <Link to='/add-idea'>
           <button>Add Idea</button>
         </Link>
@@ -129,7 +129,7 @@ class MyIdeas extends React.Component {
         handleEditClick = {this.props.handleEditClick}
         handleDeleteClick = {this.handleDeleteClick}
         results={results} />}
-      </div>
+      </>
     )
   }  
 }

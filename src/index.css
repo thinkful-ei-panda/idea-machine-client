@@ -24,4 +24,13 @@ main{
 
 h2{
   margin:0;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+button{
+  border:none;
+  border-radius: 2px;
+  background-color: #c6ff00;
+  box-shadow: 1px 1px 0px;
 }

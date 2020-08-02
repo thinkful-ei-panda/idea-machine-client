@@ -5,8 +5,7 @@ class TrackedIdeasPage extends React.Component {
 
   render() {
     return (
-      <div className='MyIdeasPage'>
-        <h2>My Ideas</h2>
+      <div className='TrackedIdeasPage'>
         <TrackedIdeas {...this.props}/>
       </div>
     )

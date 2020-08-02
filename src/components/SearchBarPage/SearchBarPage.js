@@ -130,7 +130,7 @@ class SearchBar extends React.Component {
     return (
       <div className="Landing-Page">
         <section>
-          <p>Save ideas and get inspired</p>
+          {this.state.results.length === 0 && <p>Save ideas and get inspired</p>}
           {/* <p>After making an account, you can save, edit or delete ideas, and make them publicly viewable.</p>
           <p>You can search for other user's public ideas and follow them to come back to later.</p> */}
         </section>
@@ -150,7 +150,8 @@ class SearchBar extends React.Component {
           </fieldset>
         </form> */}
 
-        <button onClick={this.handleSearchIdeasSubmit}>Inspiration</button>
+        {this.state.results.length === 0 && <button onClick={this.handleSearchIdeasSubmit}>Inspiration</button>}
+        {this.state.results.length !== 0 && <h2>Public Ideas</h2>}
         {this.state.error && <div>{this.state.error.error}</div>}
         {results.length !== 0 && <Results 
         handleFollowClick = {this.handleFollowClick}
