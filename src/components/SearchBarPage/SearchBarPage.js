@@ -2,6 +2,7 @@ import React from 'react'
 import Results from '../IdeaResults/IdeaResults';
 import config from '../../config';
 import TokenService from '../../services/token-service';
+import './SearchBarPage.css';
 
 class SearchBar extends React.Component {
 
@@ -129,11 +130,12 @@ class SearchBar extends React.Component {
     return (
       <div className="Landing-Page">
         <section>
-          <p>The Idea Machine is an app for saving development ideas AND for getting inspiration from other users posts.</p>
-          <p>After making an account, you can save, edit or delete ideas, and make them publicly viewable.</p>
-          <p>You can search for other user's public ideas and follow them to come back to later.</p>
+          <p>Save ideas and get inspired</p>
+          {/* <p>After making an account, you can save, edit or delete ideas, and make them publicly viewable.</p>
+          <p>You can search for other user's public ideas and follow them to come back to later.</p> */}
         </section>
-        <form onSubmit={this.handleSearchIdeasSubmit} className="search-form-center">
+
+        {/* <form onSubmit={this.handleSearchIdeasSubmit} className="search-form-center">
           <legend></legend>
           <fieldset>
             <div className="row">
@@ -146,7 +148,9 @@ class SearchBar extends React.Component {
               </div>
             </div>
           </fieldset>
-        </form>
+        </form> */}
+
+        <button onClick={this.handleSearchIdeasSubmit}>Inspiration</button>
         {this.state.error && <div>{this.state.error.error}</div>}
         {results.length !== 0 && <Results 
         handleFollowClick = {this.handleFollowClick}

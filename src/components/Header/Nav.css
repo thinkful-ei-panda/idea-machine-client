@@ -1,0 +1,21 @@
+.Nav{
+  display:flex;
+  flex-direction: row;
+  background-color: #b0bec5;
+}
+
+a{
+  flex: 1;
+  text-decoration: none;
+}
+
+a div{
+  width:60%;
+  margin:auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+a.active div{
+  border-bottom: solid 8px #c6ff00;
+}

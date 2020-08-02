@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom'
 import TokenService from '../../services/token-service'
 import LoggedInNav from './LoggedInNav'
 import NotLoggedInNav from './NotLoggedInNav'
+import './Header.css'
 
 class Header extends React.Component {  
   state = {
@@ -17,16 +18,16 @@ class Header extends React.Component {
 
   render() {
     return (
-      <nav className='Header'>
+      <header className='Header'>
         <h1>
           <Link to='/'>
-            Idea Machine
+            ID8
           </Link>
         </h1>
         {TokenService.hasAuthToken()
           ?<LoggedInNav handleLogout={this.props.handleLogout}/>
           :<NotLoggedInNav />}
-      </nav>
+      </header>
     )
   }  
 }

@@ -47,9 +47,7 @@ class App extends React.Component {
   render(){
     return (
       <div className="App">
-        <header className='App__header'>
-          <Header loggedInToggle={this.state.loggedInToggle}  handleLogout={this.handleLogout} />
-        </header>
+        <Header loggedInToggle={this.state.loggedInToggle}  handleLogout={this.handleLogout} />
         <main>
           <Switch>
             <Route

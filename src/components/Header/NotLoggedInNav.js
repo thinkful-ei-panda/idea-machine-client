@@ -1,16 +1,17 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import {NavLink} from 'react-router-dom'
+import './Nav.css'
 
 const NotLoggedInNav = () => {
   return (
-    <div>
-      <Link to='/login'>
-        Login
-      </Link>
-      <Link to='/register'>
-        Register
-      </Link>
-    </div>
+    <nav className='Nav'>
+      <NavLink to='/login'>
+        <div>Login</div>
+      </NavLink>
+      <NavLink to='/register'>
+        <div>Register</div>
+      </NavLink>
+    </nav>
   )
 }
 
