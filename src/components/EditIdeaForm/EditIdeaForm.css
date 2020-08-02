@@ -1,0 +1,18 @@
+fieldset{
+  border:none;
+}
+
+fieldset .formInputContainer{
+  display:flex;
+  flex-direction: column;
+}
+
+label{
+  text-align: left;
+  padding-top: 18px;
+  padding-bottom: 8px;
+}
+
+.buttonContainer{
+  padding-top: 15px;
+}

@@ -1,6 +1,7 @@
 import React from 'react'
 import config from '../../config'
 import TokenService from '../../services/token-service'
+import './EditIdeaForm.css'
 
 class EditIdeaForm extends React.Component {
   static defaultProps = {
@@ -50,15 +51,17 @@ class EditIdeaForm extends React.Component {
         <form onSubmit={ev =>this.handleEditIdeaFormSubmit(ev,id)}>
           <legend></legend>
           <fieldset>
-            <div>
+            <div className='formInputContainer'>
               <label htmlFor='title'>Title</label>
               <input id='title' name='title' defaultValue={title}/>
             </div>            
-            <div>
+            <div className='formInputContainer'>
               <label htmlFor='content'>Content</label>
               <textarea id='content' name='content' defaultValue={content}/>
-            </div>           
-            <button>Finish Edit</button>
+            </div>      
+            <div className='buttonContainer'>
+              <button>Finish Edit</button>
+            </div>
           </fieldset>
         </form>
         {this.state.error && <div>{this.state.error}</div>}

@@ -98,7 +98,6 @@ class SearchBar extends React.Component {
   handleFollowClick = (e) => {    
     
     const idea_id = e.target.closest('li').id
-    console.log('follow click',idea_id)
 
     fetch(`${config.API_ENDPOINT}/followedIdeas`,{
       method: 'POST',
