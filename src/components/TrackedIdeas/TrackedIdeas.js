@@ -29,8 +29,6 @@ class TrackedIdeas extends React.Component{
   }
 
   handleUnfollowClick = (e) => {
-    console.log('unfollow',e.target.closest('li').id)
-
     const idea_id = e.target.closest('li').id
 
     fetch(`${config.API_ENDPOINT}/followedIdeas/${idea_id}`,{

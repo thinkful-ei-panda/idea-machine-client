@@ -11,8 +11,7 @@ const IdeaResults = (props) => {
   for(let i=0; i<props.results.length-1; i++){
     const result = props.results[i]
     if(resultColumn<=3){
-      resultRow.push(<Result {...props} key={result.id} result={result}/>)
-      console.log(result.id)
+      resultRow.push(<Result {...props} key={result.id} result={result}/>)      
       resultColumn++
     }else{
       resultColumn=1;

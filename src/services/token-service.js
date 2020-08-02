@@ -17,8 +17,7 @@ const TokenService = {
     return window.atob(TokenService.getAuthToken().split('.')[1])
   },
   getUserName(){
-    const payload = this.getPayloadFromToken()
-    console.log(payload)
+    const payload = this.getPayloadFromToken()    
     return payload.user_name 
   }
 }

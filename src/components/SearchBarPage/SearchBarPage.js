@@ -62,7 +62,6 @@ class SearchBar extends React.Component {
           results = [...followedWithFollowed,...notFollowed]
 
           //Remove results that are made by the logged in user          
-          console.log('message', TokenService.getAuthToken())
 
           new Promise((resolve, reject) => {            
             const payload = window.atob(TokenService.getAuthToken().split('.')[1])
@@ -74,8 +73,7 @@ class SearchBar extends React.Component {
             results = results.filter(idea => idea.user_name !== user_name)
             this.setState({results})
           })
-          .catch(error => {
-            console.log('error')
+          .catch(error => {            
             this.setState({error})
           })
         })
