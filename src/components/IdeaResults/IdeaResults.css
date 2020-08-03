@@ -3,9 +3,18 @@ ul{
   padding:0;
 }
 
-@media (min-width: 1000px) {
-  .resultRow{
+.results-container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+@media (min-width: 600px) {
+  /* .resultRow{
     display:flex;
     flex-direction: row;
-  }
+  } */
+
+  
 }
