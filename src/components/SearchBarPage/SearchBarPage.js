@@ -149,7 +149,7 @@ class SearchBar extends React.Component {
 
         {this.state.results.length === 0 && <button onClick={this.handleSearchIdeasSubmit}>Inspiration</button>}
         {this.state.results.length !== 0 && <h2>Public Ideas</h2>}
-        {this.state.error && <div>{this.state.error.error}</div>}
+        {this.state.error && <div className='error'>{this.state.error.error}</div>}
         {results.length !== 0 && <Results 
         handleFollowClick = {this.handleFollowClick}
         results={results} 

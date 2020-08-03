@@ -49,3 +49,8 @@ fieldset{
   padding-bottom: 8px;
   padding-top:0px;
 }
+
+.error{
+  color:red;
+  padding-bottom: 15px;
+}

@@ -37,9 +37,10 @@ class AddIdeaForm extends React.Component {
   }
 
   render(){
+    const error = this.state.error
     return (
       <div>
-        {this.state.error && <div>{this.state.error.error}</div>}
+        {this.state.error && <div className='error'>{this.state.error.error}</div>}
         <form onSubmit={this.handleAddIdeaFormSubmit}>
           <legend hidden>Add Idea Form</legend>
           <fieldset>
@@ -52,6 +53,7 @@ class AddIdeaForm extends React.Component {
                 <label htmlFor='content'>Content</label>
                 <textarea id='content' name='content' />
               </div>
+              {error && <div className='error'>{error.error}</div>}
               <div className='buttonContainer'>
                 <button>Add Idea</button>
               </div>

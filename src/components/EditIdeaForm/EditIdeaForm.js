@@ -66,7 +66,7 @@ class EditIdeaForm extends React.Component {
             </div>
           </fieldset>
         </form>
-        {this.state.error && <div>{this.state.error}</div>}
+        {this.state.error && <div className='error'>{this.state.error}</div>}
       </div>
     )
   }

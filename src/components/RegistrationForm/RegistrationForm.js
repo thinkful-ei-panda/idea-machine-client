@@ -76,13 +76,14 @@ class RegistrationForm extends React.Component {
                 <label htmlFor="password">Password</label>
                 <input name="password" id="password" />
               </div>
+              {error && <div className='error'>{error.error}</div>}
               <div className='buttonContainer'>
                 <button>Register</button>
               </div>
             </div>
           </fieldset>
         </form>
-        {error && <div>{error.error}</div>}
+        
       </div>
     )
   }  

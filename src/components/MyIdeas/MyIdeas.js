@@ -124,7 +124,7 @@ class MyIdeas extends React.Component {
           </Link>
         </div>
 
-        {this.state.error && <div>{this.state.error.error}</div>}
+        {this.state.error && <div className='error'>{this.state.error.error}</div>}
         
         {results.length !== 0 && <Results {...this.props}
         handleMakePublicClick = {this.handleMakePublicClick} 
