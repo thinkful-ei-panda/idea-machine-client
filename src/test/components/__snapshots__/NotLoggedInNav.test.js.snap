@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NotLoggedInNav Component Snapshot test Renders the UI as expected 1`] = `
+<nav
+  className="Nav"
+>
+  <a
+    aria-current={null}
+    href="/home"
+    onClick={[Function]}
+  >
+    <div>
+      Home
+    </div>
+  </a>
+  <a
+    aria-current={null}
+    href="/login"
+    onClick={[Function]}
+  >
+    <div>
+      Login
+    </div>
+  </a>
+  <a
+    aria-current={null}
+    href="/register"
+    onClick={[Function]}
+  >
+    <div>
+      Register
+    </div>
+  </a>
+</nav>
+`;

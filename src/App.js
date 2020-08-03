@@ -12,7 +12,7 @@ import TokenService from './services/token-service';
 import MyIdeasPage from './routes/MyIdeasPage';
 import TrackedIdeasPage from './routes/TrackedIdeasPage';
 import RegistrationPage from './routes/RegistrationPage';
-import EditIdeaPage from './routes/EditIdeaForm';
+import EditIdeaPage from './routes/EditIdeaPage';
 
 
 

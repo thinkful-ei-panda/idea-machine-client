@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TrackedIdeasPage Component Snapshot test Renders the UI as expected 1`] = `
+<div
+  className="TrackedIdeasPage"
+>
+  <h2
+    hidden={true}
+  >
+    Followed Ideas
+  </h2>
+</div>
+`;

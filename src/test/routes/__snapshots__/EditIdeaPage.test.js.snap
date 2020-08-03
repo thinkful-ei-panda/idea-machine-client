@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EditIdeaPage Component Snapshot test Renders the UI as expected 1`] = `
+<div
+  className="AddIdeaPage"
+>
+  <h2>
+    Edit Idea
+  </h2>
+  <div>
+    <form
+      onSubmit={[Function]}
+    >
+      <legend>
+        Edit Idea Form
+      </legend>
+      <fieldset>
+        <div
+          className="column"
+        >
+          <div
+            className="formInputContainer"
+          >
+            <label
+              htmlFor="title"
+            >
+              Title
+            </label>
+            <input
+              id="title"
+              name="title"
+            />
+          </div>
+          <div
+            className="formInputContainer"
+          >
+            <label
+              htmlFor="content"
+            >
+              Content
+            </label>
+            <textarea
+              id="content"
+              name="content"
+            />
+          </div>
+          <div
+            className="buttonContainer"
+          >
+            <button>
+              Finish Edit
+            </button>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</div>
+`;

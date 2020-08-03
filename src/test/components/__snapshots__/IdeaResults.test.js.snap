@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IdeaResults Component Snapshot test Renders the UI as expected 1`] = `
+<div
+  className="results-container"
+>
+  <li
+    className="idea"
+    id={1}
+  >
+    <header>
+      <h3>
+        asdf
+      </h3>
+      <div>
+        by 
+        ladkjs
+      </div>
+    </header>
+    <section>
+      aldksjf
+    </section>
+    <div
+      className="buttonsContainer"
+    />
+  </li>
+</div>
+`;

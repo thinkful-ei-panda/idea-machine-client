@@ -3,7 +3,7 @@ import {useLocation} from 'react-router-dom'
 import TokenService from '../../services/token-service';
 import './Result.css';
 
-const Result = (props) => {
+const Result = (props) => {  
     
   const {title,content,user_name,id,public_status,followed} = props.result
 

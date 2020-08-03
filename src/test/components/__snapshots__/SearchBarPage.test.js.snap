@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchBarPage Component Snapshot test Renders the UI as expected 1`] = `
+<div
+  className="Landing-Page"
+>
+  <section
+    className="instructions"
+  >
+    Save ideas and get inspired
+  </section>
+  <button
+    onClick={[Function]}
+  >
+    Inspiration
+  </button>
+</div>
+`;

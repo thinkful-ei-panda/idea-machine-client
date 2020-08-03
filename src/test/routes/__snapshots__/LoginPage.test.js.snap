@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoginPage Component Snapshot test Renders the UI as expected 1`] = `
+<div
+  className="LoginPage"
+>
+  <h2>
+    Login
+  </h2>
+  <div
+    className="login-container"
+  >
+    <form
+      className="login-form"
+      onSubmit={[Function]}
+    >
+      <legend />
+      <fieldset>
+        <div
+          className="column"
+        >
+          <div
+            className="formInputContainer"
+          >
+            <label
+              htmlFor="username"
+            >
+              Username
+            </label>
+            <input
+              id="username"
+              name="username"
+            />
+          </div>
+          <div
+            className="formInputContainer"
+          >
+            <label
+              htmlFor="password"
+            >
+              Password
+            </label>
+            <input
+              id="password"
+              name="password"
+              type="password"
+            />
+          </div>
+          <div
+            className="buttonContainer"
+          >
+            <button>
+              Sign In
+            </button>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</div>
+`;

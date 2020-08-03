@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MyIdeas Component Snapshot test Renders the UI as expected 1`] = `
+<div
+  className="buttonContainer-add-idea"
+>
+  <a
+    href="/add-idea"
+    onClick={[Function]}
+  >
+    <button>
+      Add Idea
+    </button>
+  </a>
+</div>
+`;
