@@ -20,7 +20,7 @@ class Header extends React.Component {
     return (
       <header className='Header'>
         <h1>
-          <Link to='/'>
+          <Link to='/home'>
             ID8
           </Link>
         </h1>

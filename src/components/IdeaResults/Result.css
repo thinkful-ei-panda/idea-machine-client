@@ -9,14 +9,14 @@ li{
   box-shadow: 2px 2px 4px #808e95;
   word-wrap: break-word;
   width:320px;
+  align-self: flex-start;
 }
 
 .buttonsContainer{
   display:flex;
   flex-direction: row;
   padding-top: 20px;
-  padding-bottom: 20px;
-  
+  padding-bottom: 20px;  
 }
 
 .buttonsContainer div{

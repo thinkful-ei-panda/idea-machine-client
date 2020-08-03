@@ -28,7 +28,7 @@ class App extends React.Component {
   handleLogIn = (history) => {
     this.setState({loggedInToggle:true})
 
-    history.push('/')
+    history.push('/home')
   }
 
   handleLogout = () => {
@@ -53,6 +53,11 @@ class App extends React.Component {
             <Route
             exact
             path='/'
+            component={SearchBarPage} />
+
+            <Route
+            exact
+            path='/home'
             component={SearchBarPage} />
   
             <PublicOnlyRoute

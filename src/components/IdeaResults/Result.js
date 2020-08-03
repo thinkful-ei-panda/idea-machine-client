@@ -13,7 +13,7 @@ const Result = (props) => {
     <li id={id} className='idea'>
       <header>
         <h3>{title}</h3>
-        {(location.pathname === '/' || location.pathname === '/tracked-ideas') && <div>by {user_name}</div>}
+        {(location.pathname !== '/my-ideas') && <div>by {user_name}</div>}
       </header>
       <section>
         {content}
@@ -23,8 +23,8 @@ const Result = (props) => {
       {(location.pathname === '/my-ideas' && public_status === true) && <div><button onClick = {e => props.handleMakePrivateClick(e)} >Make private</button></div>}
       {location.pathname === '/my-ideas' && <div><button onClick = {e => props.handleEditClick(e,props.history,title,content) } className='secondary'>Edit</button></div>}
       {location.pathname === '/my-ideas' && <div><button onClick = {e => props.handleDeleteClick(e)} className='secondary'>Delete</button></div>}
-      {(location.pathname === '/' && TokenService.hasAuthToken() && !followed) && <div><button onClick = {e => props.handleFollowClick(e)}>Follow</button></div>}
-      {(location.pathname === '/' && TokenService.hasAuthToken() && followed) && <div>Followed</div>}
+      {((location.pathname === '/' || location.pathname === '/home') && TokenService.hasAuthToken() && !followed) && <div><button onClick = {e => props.handleFollowClick(e)}>Follow</button></div>}
+      {((location.pathname === '/' || location.pathname === '/home') && TokenService.hasAuthToken() && followed) && <div>Followed</div>}
       {location.pathname === '/tracked-ideas' && <div><button onClick = {e =>props.handleUnfollowClick(e)}>Unfollow</button></div>}
       </div>
     </li>

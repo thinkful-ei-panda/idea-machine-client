@@ -5,6 +5,9 @@ import './Nav.css'
 const NotLoggedInNav = () => {
   return (
     <nav className='Nav'>
+      <NavLink to='/home'>
+        <div>Home</div>
+      </NavLink>
       <NavLink to='/login'>
         <div>Login</div>
       </NavLink>

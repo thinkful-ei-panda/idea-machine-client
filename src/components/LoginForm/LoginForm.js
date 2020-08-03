@@ -55,13 +55,14 @@ class LoginForm extends React.Component {
                 <label htmlFor="password">Password</label>
                 <input type="password" name="password" id="password" />
               </div>
+              {error && <div>{error.error}</div>}
               <div className='buttonContainer'>
                 <button >Sign In</button>
               </div>
             </div>
           </fieldset>
         </form>        
-        {error && <div>{error}</div>}
+        
       </div>
     )
   }  
