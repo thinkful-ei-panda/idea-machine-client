@@ -22,7 +22,7 @@ class EditIdeaForm extends React.Component {
     this.setState({error:null,loading:true})
     const {title,content} = ev.target
 
-    fetch(`${config.API_ENDPOINT}/ideas/${id}`, {
+    fetch(`${config.API_ENDPOINT}/ideas/idea/${id}`, {
       method: 'PATCH',
       headers: {
         'content-type':'application/json',

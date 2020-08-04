@@ -14,7 +14,7 @@ class MyIdeas extends React.Component {
 
   componentDidMount(){
     this.setState({loading:true})
-    fetch(`${config.API_ENDPOINT}/my-ideas`, {
+    fetch(`${config.API_ENDPOINT}/ideas/my-ideas`, {
       method: 'GET',
       headers:{
         'content-type':'application/json',
@@ -35,7 +35,7 @@ class MyIdeas extends React.Component {
   handleMakePublicClick = (e) => {
     this.setState({error:null,loading:true})
     const idea_id = e.target.closest('li').id
-    fetch(`${config.API_ENDPOINT}/ideas/${idea_id}`,{
+    fetch(`${config.API_ENDPOINT}/ideas/idea/${idea_id}`,{
       method:'PATCH',
       headers:{
         'content-type' : 'application/json',
@@ -63,7 +63,7 @@ class MyIdeas extends React.Component {
   handleMakePrivateClick = (e) => {
     this.setState({error:null,loading:true})
     const idea_id = e.target.closest('li').id
-    fetch(`${config.API_ENDPOINT}/ideas/${idea_id}`,{
+    fetch(`${config.API_ENDPOINT}/ideas/idea/${idea_id}`,{
       method:'PATCH',
       headers:{
         'content-type' : 'application/json',
@@ -96,7 +96,7 @@ class MyIdeas extends React.Component {
     const id = e.target.closest('li').id
 
 
-    fetch(`${config.API_ENDPOINT}/ideas/${id}`,{
+    fetch(`${config.API_ENDPOINT}/ideas/idea/${id}`,{
       method:'DELETE',
       headers: {
         'content-type':'application/json',
