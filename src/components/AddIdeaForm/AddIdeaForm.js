@@ -5,12 +5,13 @@ import './AddIdeaForm.css'
 
 class AddIdeaForm extends React.Component {
   state={
-    error:null
+    error:null,
+    loading:false
   }
 
   handleAddIdeaFormSubmit = (ev) => {
     ev.preventDefault()
-    this.setState({error:null})
+    this.setState({error:null,loading:true})
 
     const {title,content} = ev.target
 
@@ -29,10 +30,11 @@ class AddIdeaForm extends React.Component {
     ?res.json().then(e => Promise.reject(e))
     :res.json())
     .then(() => {
+      this.setState({loading:false})
       this.props.history.push('/my-ideas')
     })
     .catch(error => {
-      this.setState({error})
+      this.setState({error,loading:false})
     })    
   }
 
@@ -54,8 +56,9 @@ class AddIdeaForm extends React.Component {
                 <textarea id='content' name='content' />
               </div>
               {error && <div className='error'>{error.error}</div>}
+              {this.state.loading && <div className='loading'>Adding Idea...</div>}
               <div className='buttonContainer'>
-                <button>Add Idea</button>
+                <button disabled={this.state.loading}>Add Idea</button>
               </div>
             </div>
           </fieldset>

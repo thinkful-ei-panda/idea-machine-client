@@ -7,12 +7,13 @@ import './LoginForm.css'
 class LoginForm extends React.Component {
   
   state={
-    error:null
+    error:null,
+    loading:false,
   }
   
   handleLoginSubmit = (ev) => {
     ev.preventDefault()
-    this.setState({error:null})
+    this.setState({error:null,loading:true})
     const {username, password} = ev.target
 
     fetch(`${config.API_ENDPOINT}/auth/login`, {
@@ -32,10 +33,11 @@ class LoginForm extends React.Component {
       TokenService.saveAuthToken(res.authToken)
       username.value = ''
       password.value = ''
+      this.setState({loading:false})
       this.props.onLoginSuccess()
     })
     .catch(error => {
-      this.setState({error})
+      this.setState({error,loading:false})
     })
   }
 
@@ -56,8 +58,9 @@ class LoginForm extends React.Component {
                 <input type="password" name="password" id="password" />
               </div>
               {error && <div className='error'>{error.error}</div>}
+              {this.state.loading && <div className='loading'>Signing In...</div>}
               <div className='buttonContainer'>
-                <button >Sign In</button>
+                <button disabled={this.state.loading}>Sign In</button>                
               </div>
             </div>
           </fieldset>

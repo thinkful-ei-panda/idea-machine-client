@@ -13,12 +13,13 @@ class EditIdeaForm extends React.Component {
   }
 
   state = {
-    error:null
+    error:null,
+    loading:false,
   }
 
   handleEditIdeaFormSubmit = (ev,id) => {
     ev.preventDefault()
-    this.setState({error:null})
+    this.setState({error:null,loading:true})
     const {title,content} = ev.target
 
     fetch(`${config.API_ENDPOINT}/ideas/${id}`, {
@@ -36,10 +37,11 @@ class EditIdeaForm extends React.Component {
     ?res.json().then(e => Promise.reject(e))
     :res)
     .then(() => {
+      this.setState({loading:false})
       this.props.history.push('/my-ideas')
     })
     .catch(error => {
-      this.setState({error:error.error})
+      this.setState({error:error.error,loading:false})
     })    
   }
 
@@ -59,14 +61,15 @@ class EditIdeaForm extends React.Component {
               <div className='formInputContainer'>
                 <label htmlFor='content'>Content</label>
                 <textarea id='content' name='content' defaultValue={content}/>
-              </div>      
+              </div>
+              {this.state.error && <div className='error'>{this.state.error}</div>}
+              {this.state.loading && <div className='loading'>Saving Edit...</div>}
               <div className='buttonContainer'>
-                <button>Finish Edit</button>
+                <button disabled={this.state.loading}>Finish Edit</button>
               </div>
             </div>
           </fieldset>
-        </form>
-        {this.state.error && <div className='error'>{this.state.error}</div>}
+        </form>        
       </div>
     )
   }

@@ -9,10 +9,12 @@ class SearchBar extends React.Component {
   state = {
     results: [],
     error:null,
+    loading:false,
   }
 
   handleSearchIdeasSubmit = (ev) => {
     ev.preventDefault()
+    this.setState({loading:true})
     fetch(`${config.API_ENDPOINT}/ideas`)
     .then(res => (!res.ok)
     ? res.json().then(e => Promise.reject(e))
@@ -71,29 +73,30 @@ class SearchBar extends React.Component {
             const user_name = JSON.parse(payload).sub
                       
             results = results.filter(idea => idea.user_name !== user_name)
-            this.setState({results})
+            this.setState({results,loading:false})
           })
           .catch(error => {            
-            this.setState({error})
+            this.setState({error,loading:false})
           })
         })
         .catch(error => {
           
-          this.setState({error})
+          this.setState({error,loading:false})
         })
 
       } else {
         
-        this.setState({results})
+        this.setState({results,loading:false})
       }      
     })
     .catch(error => {
       
-      this.setState({error})
+      this.setState({error,loading:false})
     })
   }
 
   handleFollowClick = (e) => {    
+    this.setState({loading:true})
     
     const idea_id = e.target.closest('li').id
 
@@ -117,7 +120,10 @@ class SearchBar extends React.Component {
       let newResults = this.state.results
       newResults.splice(index,1,followedIdea)      
 
-      this.setState({results:newResults})
+      this.setState({results:newResults,loading:false})
+    })
+    .catch(error => {
+      this.setState({error,loading:false})
     })
   }
 
@@ -147,11 +153,13 @@ class SearchBar extends React.Component {
           </fieldset>
         </form> */}
 
-        {this.state.results.length === 0 && <button onClick={this.handleSearchIdeasSubmit}>Inspiration</button>}
+        {this.state.results.length === 0 && <button disabled={this.state.loading} onClick={this.handleSearchIdeasSubmit}>Inspiration</button>}
         {this.state.results.length !== 0 && <h2>Public Ideas</h2>}
         {this.state.error && <div className='error'>{this.state.error.error}</div>}
+        {this.state.loading && <div className='loading'>Loading...</div>}
         {results.length !== 0 && <Results 
         handleFollowClick = {this.handleFollowClick}
+        loading={this.state.loading}
         results={results} 
         />}
       </div>

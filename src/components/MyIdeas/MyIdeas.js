@@ -9,9 +9,11 @@ class MyIdeas extends React.Component {
   state = {
     results: [],
     error:null,
+    loading:false,
   }
 
   componentDidMount(){
+    this.setState({loading:true})
     fetch(`${config.API_ENDPOINT}/my-ideas`, {
       method: 'GET',
       headers:{
@@ -23,15 +25,15 @@ class MyIdeas extends React.Component {
     ?res.json().then(e => Promise.reject(e))
     :res.json())
     .then(res => {
-      this.setState({results:res})
+      this.setState({results:res,loading:false})
     })
     .catch(error => {
-      this.setState({error:error})
+      this.setState({error:error,loading:false})
     })
   }
 
   handleMakePublicClick = (e) => {
-    this.setState({error:null})
+    this.setState({error:null,loading:true})
     const idea_id = e.target.closest('li').id
     fetch(`${config.API_ENDPOINT}/ideas/${idea_id}`,{
       method:'PATCH',
@@ -51,15 +53,15 @@ class MyIdeas extends React.Component {
       updatedIdea.public_status = true      
       updatedResults.splice(index,1,updatedIdea)
 
-      this.setState({results: updatedResults})
+      this.setState({results: updatedResults,loading:false})
     })
     .catch(error => {
-      this.setState({error})
+      this.setState({error,loading:false})
     })
   }
   
   handleMakePrivateClick = (e) => {
-    this.setState({error:null})
+    this.setState({error:null,loading:true})
     const idea_id = e.target.closest('li').id
     fetch(`${config.API_ENDPOINT}/ideas/${idea_id}`,{
       method:'PATCH',
@@ -82,15 +84,15 @@ class MyIdeas extends React.Component {
       updatedIdea.public_status = false
       updatedResults.splice(index,1,updatedIdea)
 
-      this.setState({results: updatedResults})
+      this.setState({results: updatedResults,loading:false})
     })
     .catch(error => {
-      this.setState({error})
+      this.setState({error,loading:false})
     })
   }
 
   handleDeleteClick = (e) => {
-    this.setState({error:null})
+    this.setState({error:null,loading:true})
     const id = e.target.closest('li').id
 
 
@@ -107,10 +109,10 @@ class MyIdeas extends React.Component {
     .then(() => {
       const newResults = this.state.results.filter(result => result.id !== Number(id))
 
-      this.setState({results:newResults})
+      this.setState({results:newResults,loading:false})
     })
     .catch(error => {
-      this.setState({error})
+      this.setState({error,loading:false})
     })
   }  
 
@@ -120,17 +122,19 @@ class MyIdeas extends React.Component {
       <>
         <div className='buttonContainer-add-idea'>
           <Link to='/add-idea'>
-            <button>Add Idea</button>
+            <button disabled={this.state.loading}>Add Idea</button>
           </Link>
         </div>
 
         {this.state.error && <div className='error'>{this.state.error.error}</div>}
+        {/* {this.state.loading && <div className='loading'>Loading...</div>} */}
         
         {results.length !== 0 && <Results {...this.props}
         handleMakePublicClick = {this.handleMakePublicClick} 
         handleMakePrivateClick = {this.handleMakePrivateClick}
         handleEditClick = {this.props.handleEditClick}
         handleDeleteClick = {this.handleDeleteClick}
+        loading={this.state.loading}
         results={results} />}
       </>
     )

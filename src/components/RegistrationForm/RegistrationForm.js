@@ -5,12 +5,13 @@ import './RegistrationForm.css'
 
 class RegistrationForm extends React.Component {
   state = {
-    error:null
+    error:null,
+    loading:false,
   }
 
   handleRegistrationSubmit = (ev) => {
     ev.preventDefault()
-    this.setState({error:null})
+    this.setState({error:null,loading:true})
     const {username, password} = ev.target
     fetch(`${config.API_ENDPOINT}/users`, {
       method: 'POST',
@@ -47,14 +48,15 @@ class RegistrationForm extends React.Component {
         password.value = ''
 
         //toggle logged in state
+        this.setState({loading:false})
         this.props.handleLogIn(this.props.history)
       })
       .catch(error => {
-        this.setState({error})
+        this.setState({error,loading:false})
       })      
     })
     .catch(error => {
-      this.setState({error})
+      this.setState({error,loading:false})
     })
   }
 
@@ -77,8 +79,9 @@ class RegistrationForm extends React.Component {
                 <input name="password" id="password" />
               </div>
               {error && <div className='error'>{error.error}</div>}
+              {this.state.loading && <div className='loading'>Registering Account...</div>}
               <div className='buttonContainer'>
-                <button>Register</button>
+                <button disabled={this.state.loading}>Register</button>
               </div>
             </div>
           </fieldset>
