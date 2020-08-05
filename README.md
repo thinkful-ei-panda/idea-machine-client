@@ -11,6 +11,10 @@ ID8 is an app that allows a user to save development ideas and get inspiration f
 
 Get inspiration to display other users' public Ideas. Follow the ones you want to track.
 
+![Home Page](/screenshots/homepage "HomePage")
+
+
+
 ### My Ideas Page
 
 Add, Edit, Delete your Ideas or make them Public or Private.
