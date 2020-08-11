@@ -1,6 +1,9 @@
 
 # ID8 by Wesley Rou
 
+Live App: https://idea-machine.vercel.app/
+Server Repo: https://github.com/thinkful-ei-panda/idea-machine-api
+
 ## Summary
 
 ID8 is an app that allows a user to save development ideas and get inspiration from other users' public ideas.
