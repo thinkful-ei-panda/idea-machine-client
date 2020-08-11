@@ -1,5 +1,5 @@
-import React from 'react'
-import MyIdeas from '../components/MyIdeas/MyIdeas'
+import React from 'react';
+import MyIdeas from '../components/MyIdeas/MyIdeas';
 
 class MyIdeasPage extends React.Component {
 
@@ -9,7 +9,7 @@ class MyIdeasPage extends React.Component {
         <h2 hidden>My Ideas</h2>
         <MyIdeas {...this.props}/>
       </div>
-    )
+    );
   }
 }
 

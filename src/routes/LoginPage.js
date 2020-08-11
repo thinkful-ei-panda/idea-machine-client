@@ -1,5 +1,5 @@
-import React from 'react'
-import LoginForm from '../components/LoginForm/LoginForm'
+import React from 'react';
+import LoginForm from '../components/LoginForm/LoginForm';
 
 class LoginPage extends React.Component {
   static defaultProps = {
@@ -17,7 +17,7 @@ class LoginPage extends React.Component {
     // console.log(location.state.from)
 
     //toggle logged in state
-    this.props.handleLogIn(this.props.history)
+    this.props.handleLogIn(this.props.history);
 
     // history.push(destination)
   }
@@ -30,7 +30,7 @@ class LoginPage extends React.Component {
           onLoginSuccess={this.handleLoginSuccess}
         />
       </div>
-    )
+    );
   }
 }
 

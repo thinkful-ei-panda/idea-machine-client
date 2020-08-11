@@ -1,9 +1,9 @@
 import React from 'react';
 import {Route, Switch} from 'react-router-dom';
 
-import Header from './components/Header/Header'
-import SearchBarPage from './components/SearchBarPage/SearchBarPage'
-import LoginPage from './routes/LoginPage'
+import Header from './components/Header/Header';
+import SearchBarPage from './components/SearchBarPage/SearchBarPage';
+import LoginPage from './routes/LoginPage';
 import AddIdeaPage from './routes/AddIdeaPage';
 
 import PublicOnlyRoute from './components/Utils/PublicOnlyRoute';
@@ -26,14 +26,14 @@ class App extends React.Component {
   }
 
   handleLogIn = (history) => {
-    this.setState({loggedInToggle:true})
+    this.setState({loggedInToggle:true});
 
-    history.push('/home')
+    history.push('/home');
   }
 
   handleLogout = () => {
-    TokenService.clearAuthToken()
-    this.setState({loggedInToggle:false})
+    TokenService.clearAuthToken();
+    this.setState({loggedInToggle:false});
   }
 
   handleEditClick = (e,history,title,content) => {
@@ -41,7 +41,7 @@ class App extends React.Component {
       title,
       content,
       id: e.target.closest('li').id,
-    }},() => history.push('/edit-idea-page'))
+    }},() => history.push('/edit-idea-page'));
   }
 
   render(){

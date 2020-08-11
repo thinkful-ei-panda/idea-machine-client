@@ -1,12 +1,12 @@
-import React from 'react'
-import {NavLink} from 'react-router-dom'
-import TokenService from '../../services/token-service'
-import './Nav.css'
+import React from 'react';
+import {NavLink} from 'react-router-dom';
+import TokenService from '../../services/token-service';
+import './Nav.css';
 
 class LoggedInNav extends React.Component {
   handleLogoutClick = () => {
-    TokenService.clearAuthToken()
-    this.setState({})
+    TokenService.clearAuthToken();
+    this.setState({});
   }
 
   render() {

@@ -1,7 +1,7 @@
-import React from 'react'
-import config from '../../config'
-import TokenService from '../../services/token-service'
-import './RegistrationForm.css'
+import React from 'react';
+import config from '../../config';
+import TokenService from '../../services/token-service';
+import './RegistrationForm.css';
 
 class RegistrationForm extends React.Component {
   state = {
@@ -10,9 +10,9 @@ class RegistrationForm extends React.Component {
   }
 
   handleRegistrationSubmit = (ev) => {
-    ev.preventDefault()
-    this.setState({error:null,loading:true})
-    const {username, password} = ev.target
+    ev.preventDefault();
+    this.setState({error:null,loading:true});
+    const {username, password} = ev.target;
     fetch(`${config.API_ENDPOINT}/users`, {
       method: 'POST',
       headers: {
@@ -43,26 +43,26 @@ class RegistrationForm extends React.Component {
       ? res.json().then(e => Promise.reject(e))
       : res.json())
       .then(res => {
-        TokenService.saveAuthToken(res.authToken)
-        username.value = ''
-        password.value = ''
+        TokenService.saveAuthToken(res.authToken);
+        username.value = '';
+        password.value = '';
 
         //toggle logged in state
-        this.setState({loading:false})
-        this.props.handleLogIn(this.props.history)
+        this.setState({loading:false});
+        this.props.handleLogIn(this.props.history);
       })
       .catch(error => {
-        this.setState({error,loading:false})
+        this.setState({error,loading:false});
       })      
     })
     .catch(error => {
-      this.setState({error,loading:false})
+      this.setState({error,loading:false});
     })
   }
 
 
   render() {
-    const {error} = this.state
+    const {error} = this.state;
 
     return (
       <div className="login-container">
@@ -88,7 +88,7 @@ class RegistrationForm extends React.Component {
         </form>
         
       </div>
-    )
+    );
   }  
 }
 

@@ -1,11 +1,11 @@
-import React from 'react'
-import {useLocation} from 'react-router-dom'
+import React from 'react';
+import {useLocation} from 'react-router-dom';
 import TokenService from '../../services/token-service';
 import './Result.css';
 
 const Result = (props) => {  
     
-  const {title,content,user_name,id,public_status,followed} = props.result
+  const {title,content,user_name,id,public_status,followed} = props.result;
 
   let location = useLocation();
 
@@ -28,7 +28,7 @@ const Result = (props) => {
       {location.pathname === '/tracked-ideas' && <div><button disabled={props.loading} onClick = {e =>props.handleUnfollowClick(e)}>Unfollow</button></div>}
       </div>
     </li>
-  )
+  );
 }  
 
 export default Result

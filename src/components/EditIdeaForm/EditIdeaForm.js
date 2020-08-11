@@ -1,7 +1,7 @@
-import React from 'react'
-import config from '../../config'
-import TokenService from '../../services/token-service'
-import './EditIdeaForm.css'
+import React from 'react';
+import config from '../../config';
+import TokenService from '../../services/token-service';
+import './EditIdeaForm.css';
 
 class EditIdeaForm extends React.Component {
   static defaultProps = {
@@ -18,9 +18,9 @@ class EditIdeaForm extends React.Component {
   }
 
   handleEditIdeaFormSubmit = (ev,id) => {
-    ev.preventDefault()
-    this.setState({error:null,loading:true})
-    const {title,content} = ev.target
+    ev.preventDefault();
+    this.setState({error:null,loading:true});
+    const {title,content} = ev.target;
 
     fetch(`${config.API_ENDPOINT}/ideas/idea/${id}`, {
       method: 'PATCH',
@@ -37,16 +37,16 @@ class EditIdeaForm extends React.Component {
     ?res.json().then(e => Promise.reject(e))
     :res)
     .then(() => {
-      this.setState({loading:false})
-      this.props.history.push('/my-ideas')
+      this.setState({loading:false});
+      this.props.history.push('/my-ideas');
     })
     .catch(error => {
-      this.setState({error:error.error,loading:false})
+      this.setState({error:error.error,loading:false});
     })    
   }
 
   render(){
-    const {title, content,id} = this.props.editIdeaValues
+    const {title, content,id} = this.props.editIdeaValues;
 
     return (
       <div>
@@ -71,7 +71,7 @@ class EditIdeaForm extends React.Component {
           </fieldset>
         </form>        
       </div>
-    )
+    );
   }
 }
 

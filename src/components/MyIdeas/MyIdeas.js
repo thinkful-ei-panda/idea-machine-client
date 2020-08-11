@@ -1,9 +1,9 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
-import Results from '../IdeaResults/IdeaResults'
-import config from '../../config'
-import TokenService from '../../services/token-service'
-import './MyIdeas.css'
+import React from 'react';
+import {Link} from 'react-router-dom';
+import Results from '../IdeaResults/IdeaResults';
+import config from '../../config';
+import TokenService from '../../services/token-service';
+import './MyIdeas.css';
 
 class MyIdeas extends React.Component {
   state = {
@@ -13,7 +13,7 @@ class MyIdeas extends React.Component {
   }
 
   componentDidMount(){
-    this.setState({loading:true})
+    this.setState({loading:true});
     fetch(`${config.API_ENDPOINT}/ideas/my-ideas`, {
       method: 'GET',
       headers:{
@@ -25,16 +25,16 @@ class MyIdeas extends React.Component {
     ?res.json().then(e => Promise.reject(e))
     :res.json())
     .then(res => {
-      this.setState({results:res,loading:false})
+      this.setState({results:res,loading:false});
     })
     .catch(error => {
-      this.setState({error:error,loading:false})
+      this.setState({error:error,loading:false});
     })
   }
 
   handleMakePublicClick = (e) => {
-    this.setState({error:null,loading:true})
-    const idea_id = e.target.closest('li').id
+    this.setState({error:null,loading:true});
+    const idea_id = e.target.closest('li').id;
     fetch(`${config.API_ENDPOINT}/ideas/idea/${idea_id}`,{
       method:'PATCH',
       headers:{
@@ -46,23 +46,23 @@ class MyIdeas extends React.Component {
       })
     })
     .then(() => {
-      const index = this.state.results.findIndex(result => result.id === Number(idea_id))
-      let updatedIdea = this.state.results.find(result => result.id === Number(idea_id))
-      let updatedResults = this.state.results
+      const index = this.state.results.findIndex(result => result.id === Number(idea_id));
+      let updatedIdea = this.state.results.find(result => result.id === Number(idea_id));
+      let updatedResults = this.state.results;
 
-      updatedIdea.public_status = true      
-      updatedResults.splice(index,1,updatedIdea)
+      updatedIdea.public_status = true;
+      updatedResults.splice(index,1,updatedIdea);
 
-      this.setState({results: updatedResults,loading:false})
+      this.setState({results: updatedResults,loading:false});
     })
     .catch(error => {
-      this.setState({error,loading:false})
+      this.setState({error,loading:false});
     })
   }
   
   handleMakePrivateClick = (e) => {
-    this.setState({error:null,loading:true})
-    const idea_id = e.target.closest('li').id
+    this.setState({error:null,loading:true});
+    const idea_id = e.target.closest('li').id;
     fetch(`${config.API_ENDPOINT}/ideas/idea/${idea_id}`,{
       method:'PATCH',
       headers:{
@@ -77,23 +77,23 @@ class MyIdeas extends React.Component {
     ?res.json().then(e => Promise.reject(e))
     :res)
     .then(() => {
-      const index = this.state.results.findIndex(result => result.id === Number(idea_id))
-      let updatedIdea = this.state.results.find(result => result.id === Number(idea_id))
-      let updatedResults = this.state.results
+      const index = this.state.results.findIndex(result => result.id === Number(idea_id));
+      let updatedIdea = this.state.results.find(result => result.id === Number(idea_id));
+      let updatedResults = this.state.results;
 
-      updatedIdea.public_status = false
-      updatedResults.splice(index,1,updatedIdea)
+      updatedIdea.public_status = false;
+      updatedResults.splice(index,1,updatedIdea);
 
-      this.setState({results: updatedResults,loading:false})
+      this.setState({results: updatedResults,loading:false});
     })
     .catch(error => {
-      this.setState({error,loading:false})
+      this.setState({error,loading:false});
     })
   }
 
   handleDeleteClick = (e) => {
-    this.setState({error:null,loading:true})
-    const id = e.target.closest('li').id
+    this.setState({error:null,loading:true});
+    const id = e.target.closest('li').id;
 
 
     fetch(`${config.API_ENDPOINT}/ideas/idea/${id}`,{
@@ -107,12 +107,12 @@ class MyIdeas extends React.Component {
     ?res.json().then(e => Promise.reject(e))
     :res)
     .then(() => {
-      const newResults = this.state.results.filter(result => result.id !== Number(id))
+      const newResults = this.state.results.filter(result => result.id !== Number(id));
 
-      this.setState({results:newResults,loading:false})
+      this.setState({results:newResults,loading:false});
     })
     .catch(error => {
-      this.setState({error,loading:false})
+      this.setState({error,loading:false});
     })
   }  
 
@@ -137,7 +137,7 @@ class MyIdeas extends React.Component {
         loading={this.state.loading}
         results={results} />}
       </>
-    )
+    );
   }  
 }
 

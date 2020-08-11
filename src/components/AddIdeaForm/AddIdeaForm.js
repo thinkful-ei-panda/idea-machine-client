@@ -1,7 +1,7 @@
-import React from 'react'
-import config from '../../config'
-import TokenService from '../../services/token-service'
-import './AddIdeaForm.css'
+import React from 'react';
+import config from '../../config';
+import TokenService from '../../services/token-service';
+import './AddIdeaForm.css';
 
 class AddIdeaForm extends React.Component {
   state={
@@ -10,8 +10,8 @@ class AddIdeaForm extends React.Component {
   }
 
   handleAddIdeaFormSubmit = (ev) => {
-    ev.preventDefault()
-    this.setState({error:null,loading:true})
+    ev.preventDefault();
+    this.setState({error:null,loading:true});
 
     const {title,content} = ev.target
 
@@ -30,16 +30,16 @@ class AddIdeaForm extends React.Component {
     ?res.json().then(e => Promise.reject(e))
     :res.json())
     .then(() => {
-      this.setState({loading:false})
-      this.props.history.push('/my-ideas')
+      this.setState({loading:false});
+      this.props.history.push('/my-ideas');
     })
     .catch(error => {
-      this.setState({error,loading:false})
+      this.setState({error,loading:false});
     })    
   }
 
   render(){
-    const error = this.state.error
+    const error = this.state.error;
     return (
       <div>
         {this.state.error && <div className='error'>{this.state.error.error}</div>}
@@ -64,7 +64,7 @@ class AddIdeaForm extends React.Component {
           </fieldset>
         </form>
       </div>
-    )
+    );
   }
 }
 

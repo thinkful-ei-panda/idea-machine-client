@@ -1,8 +1,8 @@
-import React from 'react'
+import React from 'react';
 
-import config from '../../config'
-import TokenService from '../../services/token-service'
-import './LoginForm.css'
+import config from '../../config';
+import TokenService from '../../services/token-service';
+import './LoginForm.css';
 
 class LoginForm extends React.Component {
   
@@ -12,9 +12,9 @@ class LoginForm extends React.Component {
   }
   
   handleLoginSubmit = (ev) => {
-    ev.preventDefault()
-    this.setState({error:null,loading:true})
-    const {username, password} = ev.target
+    ev.preventDefault();
+    this.setState({error:null,loading:true});
+    const {username, password} = ev.target;
 
     fetch(`${config.API_ENDPOINT}/auth/login`, {
       method: 'POST',
@@ -30,19 +30,19 @@ class LoginForm extends React.Component {
     ? res.json().then(e => Promise.reject(e))
     : res.json())
     .then(res => {
-      TokenService.saveAuthToken(res.authToken)
-      username.value = ''
-      password.value = ''
-      this.setState({loading:false})
-      this.props.onLoginSuccess()
+      TokenService.saveAuthToken(res.authToken);
+      username.value = '';
+      password.value = '';
+      this.setState({loading:false});
+      this.props.onLoginSuccess();
     })
     .catch(error => {
-      this.setState({error,loading:false})
+      this.setState({error,loading:false});
     })
   }
 
   render() {
-    const {error} = this.state
+    const {error} = this.state;
     return (
       <div className="login-container">
         <form onSubmit={this.handleLoginSubmit} className="login-form">
@@ -67,7 +67,7 @@ class LoginForm extends React.Component {
         </form>        
         
       </div>
-    )
+    );
   }  
 }
 

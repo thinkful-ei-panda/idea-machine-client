@@ -1,6 +1,6 @@
-import React from 'react'
-import {NavLink} from 'react-router-dom'
-import './Nav.css'
+import React from 'react';
+import {NavLink} from 'react-router-dom';
+import './Nav.css';
 
 const NotLoggedInNav = () => {
   return (
@@ -15,7 +15,7 @@ const NotLoggedInNav = () => {
         <div>Register</div>
       </NavLink>
     </nav>
-  )
+  );
 }
 
 export default NotLoggedInNav

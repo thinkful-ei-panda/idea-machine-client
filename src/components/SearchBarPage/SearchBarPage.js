@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import Results from '../IdeaResults/IdeaResults';
 import config from '../../config';
 import TokenService from '../../services/token-service';
@@ -13,14 +13,14 @@ class SearchBar extends React.Component {
   }
 
   handleSearchIdeasSubmit = (ev) => {
-    ev.preventDefault()
-    this.setState({loading:true})
+    ev.preventDefault();
+    this.setState({loading:true});
     fetch(`${config.API_ENDPOINT}/ideas`)
     .then(res => (!res.ok)
     ? res.json().then(e => Promise.reject(e))
     : res.json())
     .then(res => {
-      let results = res
+      let results = res;
       if(TokenService.hasAuthToken()){        
 
         //Add followed key with a value of true if the idea is followed by the logged in user
@@ -42,63 +42,63 @@ class SearchBar extends React.Component {
             let check;
             trackedResults.forEach(trackedResult => {
               if(trackedResult.id === result.id)
-                check = true
+                check = true;
             })
-            return check
-          })
+            return check;
+          });
           
           const notFollowed = results.filter(result => {
-            let check=true
+            let check=true;
             trackedResults.forEach(trackedResult => {
               if(trackedResult.id === result.id)
-                check = false
-            })
-            return check
+                check = false;
+            });
+            return check;
           })
 
           const followedWithFollowed = followed.map(idea => {
-            idea.followed = true
-            return idea
+            idea.followed = true;
+            return idea;
           })
 
-          results = [...followedWithFollowed,...notFollowed]
+          results = [...followedWithFollowed,...notFollowed];
 
           //Remove results that are made by the logged in user          
 
           new Promise((resolve, reject) => {            
-            const payload = window.atob(TokenService.getAuthToken().split('.')[1])
-            resolve (payload)                       
+            const payload = window.atob(TokenService.getAuthToken().split('.')[1]);
+            resolve (payload);
           })
           .then(payload => {
-            const user_name = JSON.parse(payload).sub
+            const user_name = JSON.parse(payload).sub;
                       
-            results = results.filter(idea => idea.user_name !== user_name)
-            this.setState({results,loading:false})
+            results = results.filter(idea => idea.user_name !== user_name);
+            this.setState({results,loading:false});
           })
           .catch(error => {            
-            this.setState({error,loading:false})
+            this.setState({error,loading:false});
           })
         })
         .catch(error => {
           
-          this.setState({error,loading:false})
+          this.setState({error,loading:false});
         })
 
       } else {
         
-        this.setState({results,loading:false})
+        this.setState({results,loading:false});
       }      
     })
     .catch(error => {
       
-      this.setState({error,loading:false})
+      this.setState({error,loading:false});
     })
   }
 
   handleFollowClick = (e) => {    
-    this.setState({loading:true})
+    this.setState({loading:true});
     
-    const idea_id = e.target.closest('li').id
+    const idea_id = e.target.closest('li').id;
 
     fetch(`${config.API_ENDPOINT}/followedIdeas`,{
       method: 'POST',
@@ -114,21 +114,21 @@ class SearchBar extends React.Component {
     ?res.json().then(e => Promise.reject(e))
     :res.json())
     .then(followedIdea => {
-      followedIdea.followed = true
-      const index = this.state.results.findIndex(idea => idea.id === followedIdea.id)
+      followedIdea.followed = true;
+      const index = this.state.results.findIndex(idea => idea.id === followedIdea.id);
       
-      let newResults = this.state.results
-      newResults.splice(index,1,followedIdea)      
+      let newResults = this.state.results;
+      newResults.splice(index,1,followedIdea);
 
-      this.setState({results:newResults,loading:false})
+      this.setState({results:newResults,loading:false});
     })
     .catch(error => {
-      this.setState({error,loading:false})
+      this.setState({error,loading:false});
     })
   }
 
   render() {
-    const {results} = this.state
+    const {results} = this.state;
 
     return (
       <div className="Landing-Page">

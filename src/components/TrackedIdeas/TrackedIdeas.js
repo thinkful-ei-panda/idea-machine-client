@@ -1,7 +1,7 @@
-import React from 'react'
-import Results from '../IdeaResults/IdeaResults'
-import config from '../../config'
-import TokenService from '../../services/token-service'
+import React from 'react';
+import Results from '../IdeaResults/IdeaResults';
+import config from '../../config';
+import TokenService from '../../services/token-service';
 
 class TrackedIdeas extends React.Component{
   state = {
@@ -11,7 +11,7 @@ class TrackedIdeas extends React.Component{
   }
 
   componentDidMount(){
-    this.setState({loading:true})
+    this.setState({loading:true});
     fetch(`${config.API_ENDPOINT}/followedIdeas`,{
       method: 'GET',
       headers: {
@@ -23,16 +23,16 @@ class TrackedIdeas extends React.Component{
     ?res.json().then(e => Promise.reject(e))
     :res.json())
     .then(results => {
-      this.setState({results,loading:false})
+      this.setState({results,loading:false});
     })
     .catch(error => {
-      this.setState({error,loading:false})
-    })
+      this.setState({error,loading:false});
+    });
   }
 
   handleUnfollowClick = (e) => {
-    this.setState({loading:true})
-    const idea_id = e.target.closest('li').id
+    this.setState({loading:true});
+    const idea_id = e.target.closest('li').id;
 
     fetch(`${config.API_ENDPOINT}/followedIdeas/${idea_id}`,{
       method: 'DELETE',
@@ -45,16 +45,16 @@ class TrackedIdeas extends React.Component{
       })
     })
     .then(() => {
-      const newResults = this.state.results.filter(result => result.id !== Number(idea_id))
-      this.setState({results:newResults,loading:false})
+      const newResults = this.state.results.filter(result => result.id !== Number(idea_id));
+      this.setState({results:newResults,loading:false});
     })
     .catch(error => {
-      this.setState({error,loading:false})
-    })
+      this.setState({error,loading:false});
+    });
   }
 
   render(){
-    const {results} = this.state
+    const {results} = this.state;
     return (
       <>        
         {this.state.error && <div className='error'>{this.state.error.error}</div>}
@@ -64,7 +64,7 @@ class TrackedIdeas extends React.Component{
         loading={this.state.loading}
         results={results} />}
       </>
-    )
+    );
   }
 }
 

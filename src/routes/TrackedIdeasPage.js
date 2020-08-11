@@ -1,5 +1,5 @@
-import React from 'react'
-import TrackedIdeas from '../components/TrackedIdeas/TrackedIdeas'
+import React from 'react';
+import TrackedIdeas from '../components/TrackedIdeas/TrackedIdeas';
 
 class TrackedIdeasPage extends React.Component {
 
@@ -9,7 +9,7 @@ class TrackedIdeasPage extends React.Component {
         <h2 hidden>Followed Ideas</h2>
         <TrackedIdeas {...this.props}/>
       </div>
-    )
+    );
   }
 }
 

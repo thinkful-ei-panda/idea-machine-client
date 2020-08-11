@@ -1,5 +1,5 @@
-import React from 'react'
-import EditIdeaForm from '../components/EditIdeaForm/EditIdeaForm'
+import React from 'react';
+import EditIdeaForm from '../components/EditIdeaForm/EditIdeaForm';
 
 class EditIdeaPage extends React.Component {
 
@@ -9,7 +9,7 @@ class EditIdeaPage extends React.Component {
         <h2>Edit Idea</h2>
         <EditIdeaForm {...this.props}/>
       </div>
-    )
+    );
   }
 }
 
