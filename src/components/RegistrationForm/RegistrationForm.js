@@ -9,10 +9,15 @@ class RegistrationForm extends React.Component {
     loading:false,
   }
 
+  //Handle registration submit
+
   handleRegistrationSubmit = (ev) => {
     ev.preventDefault();
     this.setState({error:null,loading:true});
     const {username, password} = ev.target;
+
+    //Post new user to database
+    
     fetch(`${config.API_ENDPOINT}/users`, {
       method: 'POST',
       headers: {
@@ -76,7 +81,7 @@ class RegistrationForm extends React.Component {
               </div>
               <div className='formInputContainer'>
                 <label htmlFor="password">Password</label>
-                <input name="password" id="password" />
+                <input type="password" name="password" id="password" />
               </div>
               {error && <div className='error'>{error.error}</div>}
               {this.state.loading && <div className='loading'>Registering Account...</div>}

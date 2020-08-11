@@ -9,7 +9,7 @@ class RegistrationPage extends React.Component {
         <h2>Create Account</h2>
         <RegistrationForm {...this.props}/>
       </div>
-    )
+    );
   }
 }
 

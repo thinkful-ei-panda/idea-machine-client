@@ -12,6 +12,8 @@ class MyIdeas extends React.Component {
     loading:false,
   }
 
+  //On mount, fetch the logged in user's ideas and store to state
+
   componentDidMount(){
     this.setState({loading:true});
     fetch(`${config.API_ENDPOINT}/ideas/my-ideas`, {
@@ -32,6 +34,8 @@ class MyIdeas extends React.Component {
     })
   }
 
+  //Handle make public button click, patch the idea in database to be public
+
   handleMakePublicClick = (e) => {
     this.setState({error:null,loading:true});
     const idea_id = e.target.closest('li').id;
@@ -46,6 +50,9 @@ class MyIdeas extends React.Component {
       })
     })
     .then(() => {
+
+      //Update state with the patched idea as public
+
       const index = this.state.results.findIndex(result => result.id === Number(idea_id));
       let updatedIdea = this.state.results.find(result => result.id === Number(idea_id));
       let updatedResults = this.state.results;
@@ -60,6 +67,8 @@ class MyIdeas extends React.Component {
     })
   }
   
+  //Handle make private button click, patch the idea in database to be private
+
   handleMakePrivateClick = (e) => {
     this.setState({error:null,loading:true});
     const idea_id = e.target.closest('li').id;
@@ -77,6 +86,9 @@ class MyIdeas extends React.Component {
     ?res.json().then(e => Promise.reject(e))
     :res)
     .then(() => {
+
+      //Update state with patched idea
+
       const index = this.state.results.findIndex(result => result.id === Number(idea_id));
       let updatedIdea = this.state.results.find(result => result.id === Number(idea_id));
       let updatedResults = this.state.results;
@@ -91,10 +103,11 @@ class MyIdeas extends React.Component {
     })
   }
 
+  //Handle delete button click, delete idea from database
+
   handleDeleteClick = (e) => {
     this.setState({error:null,loading:true});
     const id = e.target.closest('li').id;
-
 
     fetch(`${config.API_ENDPOINT}/ideas/idea/${id}`,{
       method:'DELETE',
@@ -107,8 +120,10 @@ class MyIdeas extends React.Component {
     ?res.json().then(e => Promise.reject(e))
     :res)
     .then(() => {
-      const newResults = this.state.results.filter(result => result.id !== Number(id));
 
+      //Update state with deleted idea
+      
+      const newResults = this.state.results.filter(result => result.id !== Number(id));
       this.setState({results:newResults,loading:false});
     })
     .catch(error => {

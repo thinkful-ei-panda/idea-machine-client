@@ -25,7 +25,7 @@ class LoggedInNav extends React.Component {
           <div>Logout</div>
         </NavLink>
       </nav>
-    )
+    );
   }  
 }
 

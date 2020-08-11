@@ -19,6 +19,9 @@ const Result = (props) => {
         {content}
       </section>
       <div className='buttonsContainer'>
+
+      {/* Conditionally render Follow, Unfollow, MakePublic, MakePrivate, Edit, and Delete buttons based off of which page the result component is being rendered in */}
+
       {(location.pathname === '/my-ideas' && public_status === false) && <div><button disabled={props.loading} onClick = {e => props.handleMakePublicClick(e)} >Make public</button></div>}
       {(location.pathname === '/my-ideas' && public_status === true) && <div><button disabled={props.loading} onClick = {e => props.handleMakePrivateClick(e)} >Make private</button></div>}
       {location.pathname === '/my-ideas' && <div><button disabled={props.loading} onClick = {e => props.handleEditClick(e,props.history,title,content) } className='secondary'>Edit</button></div>}

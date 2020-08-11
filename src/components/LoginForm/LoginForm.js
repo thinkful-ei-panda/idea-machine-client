@@ -10,6 +10,8 @@ class LoginForm extends React.Component {
     error:null,
     loading:false,
   }
+
+  //Handle login click, verify login info vs database
   
   handleLoginSubmit = (ev) => {
     ev.preventDefault();

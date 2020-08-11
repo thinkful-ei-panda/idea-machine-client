@@ -17,6 +17,8 @@ class EditIdeaForm extends React.Component {
     loading:false,
   }
 
+  //Handle edit form submit, patch idea in database
+
   handleEditIdeaFormSubmit = (ev,id) => {
     ev.preventDefault();
     this.setState({error:null,loading:true});

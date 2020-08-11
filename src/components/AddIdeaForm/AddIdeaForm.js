@@ -9,6 +9,8 @@ class AddIdeaForm extends React.Component {
     loading:false
   }
 
+  //Handle add idea submit, post new idea to database
+
   handleAddIdeaFormSubmit = (ev) => {
     ev.preventDefault();
     this.setState({error:null,loading:true});
