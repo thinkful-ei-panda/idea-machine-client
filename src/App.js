@@ -27,7 +27,6 @@ class App extends React.Component {
 
   handleLogIn = (history) => {
     this.setState({loggedInToggle:true});
-
     history.push('/home');
   }
 
