@@ -29,4 +29,4 @@ See which Ideas you have tracked and Unfollow the ones you are no longer interes
 
 ## Technology
 
-Made with React
+Made with the React framework. Routing done with React Router.
