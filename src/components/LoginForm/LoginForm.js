@@ -47,8 +47,13 @@ class LoginForm extends React.Component {
     const {error} = this.state;
     return (
       <div className="login-container">
+        <section>
+          <p>Demo Login:</p>
+          <p>username: dunder</p>
+          <p>password: password</p>
+        </section>
         <form onSubmit={this.handleLoginSubmit} className="login-form">
-          <legend></legend>
+          <legend hidden>Login Form</legend>
           <fieldset>
             <div className='column'>
               <div className="formInputContainer">

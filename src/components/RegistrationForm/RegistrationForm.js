@@ -72,7 +72,7 @@ class RegistrationForm extends React.Component {
     return (
       <div className="login-container">
         <form onSubmit={this.handleRegistrationSubmit} className="login-form">
-          <legend></legend>
+          <legend hidden>Registration Form</legend>
           <fieldset>
             <div className="column">
               <div className='formInputContainer'>

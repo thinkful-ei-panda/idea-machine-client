@@ -146,9 +146,12 @@ class SearchBar extends React.Component {
         
         {this.state.results.length === 0 
         && <section className='instructions'>
-            Save ideas and get inspired
-            <p>After making an account, you can save, edit or delete ideas, and make them publicly viewable.</p>
-            <p>You can search for other user's public ideas and follow them to come back to later.</p>
+            <p>Save ideas and get inspired</p>
+            <p>ID8 is an app to assist developers early on in the develpment process.</p>            
+            <p>You can save, edit or delete ideas, and make them publicly viewable.</p>
+            <p>You can view other user's public ideas and follow them to return to later.</p>
+            <p>ID8 will eventually become a hub for new developers looking for project ideas to complete and add to their portfolios</p>
+            <p>Future features will include linking repos with idea implementations and ratings</p>
             <p>Demo Login:</p>
             <p>username: dunder</p>
             <p>password: password</p>
